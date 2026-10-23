@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340" role="img" aria-label="月、The Moon"><style>
+.ln{fill:none;stroke:#d9b86a;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.th{fill:none;stroke:#d9b86a;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}.ls{fill:none;stroke:#b9493d;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.bolt{fill:none;stroke:#b9493d;stroke-width:3.4;stroke-linejoin:miter}.fk{fill:#d9b86a}.fs{fill:#b9493d}.fpaper{fill:#16142e}.fp{fill:#16142e;stroke:#d9b86a;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}.cf-edge{fill:#16142e;stroke:#d9b86a;stroke-width:1.6}.cf-in{fill:none;stroke:#d9b86a;stroke-width:.7}.roman{font-family:Georgia,serif;fill:#d9b86a;font-weight:600;letter-spacing:2px}.div{stroke:#d9b86a;stroke-width:.8;fill:none}.jpname{font-family:'Yu Mincho',serif;font-weight:700;fill:#d9b86a;letter-spacing:3px}.enname{font-family:Georgia,serif;fill:#d9b86a;letter-spacing:2.5px;font-weight:600}
+</style>
+<rect class="cf-edge" x="4" y="4" width="192" height="332" rx="10"/><rect class="cf-in" x="12" y="12" width="176" height="316" rx="4"/>
+<text class="roman" x="100" y="42" font-size="19" text-anchor="middle">XVIII</text>
+<g transform="translate(100 151) scale(1.1) translate(-75 -75)"><circle class="fs" cx="75" cy="38" r="20"/><circle class="fpaper" cx="83" cy="34" r="16"/><path class="th" d="M100 38L108 38M98.1 47.6L105.5 50.6M92.7 55.7L98.3 61.3M84.6 61.1L87.6 68.5M75 63L75 71M65.4 61.1L62.4 68.5M57.3 55.7L51.7 61.3M51.9 47.6L44.5 50.6M50 38L42 38M51.9 28.4L44.5 25.4M57.3 20.3L51.7 14.7M65.4 14.9L62.4 7.5M75 13L75 5M84.6 14.9L87.6 7.5M92.7 20.3L98.3 14.7M98.1 28.4L105.5 25.4"/>
+<path class="ln" d="M10 142V76H14V70H20V76H26V70H32V76H36V142M114 142V76H118V70H124V76H130V70H136V76H140V142"/>
+<path class="th" d="M75 142Q40 124 75 108Q110 92 75 78"/></g>
+<path class="div" d="M44 262H156"/>
+<text class="jpname" x="100" y="292" font-size="26" text-anchor="middle">月</text>
+<text class="enname" x="100" y="314" font-size="12" text-anchor="middle">THE MOON</text></svg>

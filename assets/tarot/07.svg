@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340" role="img" aria-label="戦車、The Chariot"><style>
+.ln{fill:none;stroke:#d9b86a;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.th{fill:none;stroke:#d9b86a;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}.ls{fill:none;stroke:#b9493d;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.bolt{fill:none;stroke:#b9493d;stroke-width:3.4;stroke-linejoin:miter}.fk{fill:#d9b86a}.fs{fill:#b9493d}.fpaper{fill:#16142e}.fp{fill:#16142e;stroke:#d9b86a;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}.cf-edge{fill:#16142e;stroke:#d9b86a;stroke-width:1.6}.cf-in{fill:none;stroke:#d9b86a;stroke-width:.7}.roman{font-family:Georgia,serif;fill:#d9b86a;font-weight:600;letter-spacing:2px}.div{stroke:#d9b86a;stroke-width:.8;fill:none}.jpname{font-family:'Yu Mincho',serif;font-weight:700;fill:#d9b86a;letter-spacing:3px}.enname{font-family:Georgia,serif;fill:#d9b86a;letter-spacing:2.5px;font-weight:600}
+</style>
+<rect class="cf-edge" x="4" y="4" width="192" height="332" rx="10"/><rect class="cf-in" x="12" y="12" width="176" height="316" rx="4"/>
+<text class="roman" x="100" y="42" font-size="19" text-anchor="middle">VII</text>
+<g transform="translate(100 151) scale(1.1) translate(-75 -75)"><circle class="ln" cx="46" cy="126" r="14"/><circle class="ln" cx="104" cy="126" r="14"/>
+<path class="th" d="M49 126L60 126M48.1 128.1L55.9 135.9M46 129L46 140M43.9 128.1L36.1 135.9M43 126L32 126M43.9 123.9L36.1 116.1M46 123L46 112M48.1 123.9L55.9 116.1M107 126L118 126M106.1 128.1L113.9 135.9M104 129L104 140M101.9 128.1L94.1 135.9M101 126L90 126M101.9 123.9L94.1 116.1M104 123L104 112M106.1 123.9L113.9 116.1"/>
+<path class="ln" d="M30 34Q75 6 120 34M38 32V78M112 32V78"/>
+<circle class="fs" cx="52.5" cy="23.5" r="3"/><circle class="fs" cx="75" cy="20" r="3"/><circle class="fs" cx="97.5" cy="23.5" r="3"/>
+<path class="fp" d="M26 78H124V118H26Z"/><path class="th" d="M26 90H124"/>
+<circle class="fp" cx="75" cy="52" r="8"/><path class="ln" d="M64 78L68 64H82L86 78"/></g>
+<path class="div" d="M44 262H156"/>
+<text class="jpname" x="100" y="292" font-size="26" text-anchor="middle">戦車</text>
+<text class="enname" x="100" y="314" font-size="12" text-anchor="middle">THE CHARIOT</text></svg>

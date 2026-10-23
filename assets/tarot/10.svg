@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340" role="img" aria-label="運命の輪、Wheel of Fortune"><style>
+.ln{fill:none;stroke:#d9b86a;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.th{fill:none;stroke:#d9b86a;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}.ls{fill:none;stroke:#b9493d;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.bolt{fill:none;stroke:#b9493d;stroke-width:3.4;stroke-linejoin:miter}.fk{fill:#d9b86a}.fs{fill:#b9493d}.fpaper{fill:#16142e}.fp{fill:#16142e;stroke:#d9b86a;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}.cf-edge{fill:#16142e;stroke:#d9b86a;stroke-width:1.6}.cf-in{fill:none;stroke:#d9b86a;stroke-width:.7}.roman{font-family:Georgia,serif;fill:#d9b86a;font-weight:600;letter-spacing:2px}.div{stroke:#d9b86a;stroke-width:.8;fill:none}.jpname{font-family:'Yu Mincho',serif;font-weight:700;fill:#d9b86a;letter-spacing:3px}.enname{font-family:Georgia,serif;fill:#d9b86a;letter-spacing:2.5px;font-weight:600}
+</style>
+<rect class="cf-edge" x="4" y="4" width="192" height="332" rx="10"/><rect class="cf-in" x="12" y="12" width="176" height="316" rx="4"/>
+<text class="roman" x="100" y="42" font-size="19" text-anchor="middle">X</text>
+<g transform="translate(100 151) scale(1.1) translate(-75 -75)"><circle class="ln" cx="75" cy="75" r="46"/><circle class="ln" cx="75" cy="75" r="34"/>
+<path class="th" d="M83 75L109 75M80.7 80.7L99 99M75 83L75 109M69.3 80.7L51 99M67 75L41 75M69.3 69.3L51 51M75 67L75 41M80.7 69.3L99 51M117.5 92.6L124.9 95.7M92.6 117.5L95.7 124.9M57.4 117.5L54.3 124.9M32.5 92.6L25.1 95.7M32.5 57.4L25.1 54.3M57.4 32.5L54.3 25.1M92.6 32.5L95.7 25.1M117.5 57.4L124.9 54.3"/>
+<circle class="fs" cx="75" cy="75" r="8"/><circle class="fs" cx="107.5" cy="42.5" r="4"/><circle class="ln" cx="12" cy="12" r="6"/><path class="ln" d="M138 5L145 18H131Z"/><path class="ln" d="M6 132H18V144H6Z"/><circle class="ln" cx="138" cy="138" r="4.5"/><path class="th" d="M145 138L148.5 138M142.9 142.9L145.4 145.4M138 145L138 148.5M133.1 142.9L130.6 145.4M131 138L127.5 138M133.1 133.1L130.6 130.6M138 131L138 127.5M142.9 133.1L145.4 130.6"/></g>
+<path class="div" d="M44 262H156"/>
+<text class="jpname" x="100" y="292" font-size="24" text-anchor="middle">運命の輪</text>
+<text class="enname" x="100" y="314" font-size="12" text-anchor="middle">WHEEL OF FORTUNE</text></svg>
