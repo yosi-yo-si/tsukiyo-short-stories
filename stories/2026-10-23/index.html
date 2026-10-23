@@ -34,7 +34,11 @@
 <figcaption>未来　世界・正位置</figcaption>
 </figure>
 </div>
-<article class="prose">
+<div class="reading-controls" aria-label="本文の表示">
+<button type="button" class="writing-toggle" id="writing-toggle" aria-controls="story-body" aria-pressed="false">縦書きで読む</button>
+<span class="writing-hint" id="writing-hint" role="status" aria-live="polite"></span>
+</div>
+<article class="prose" id="story-body" tabindex="0" aria-label="短編本文">
 <p>朝のバスは七時二十分に来る。美穂は五歳の蒼の手を引いて、その十分前には停留所に立った。田んぼの向こうで霧が薄れていくのを、毎朝同じ角度で見ている。</p>
 <p>工場の班長には、先月も頭を下げた。保育園の迎えは五時十分で、バスで間に合わせるには四時の便に乗らなければならない。定時までは働けなかった。「また早退か」とは言われなかった。言われないことのほうが、胸の底に重く沈んだ。美穂は黙って作業台の下に膝をつき、落ちたネジを拾った。黙って拾うことなら、十八のときから得意だった。</p>
 <p>三年前、車は手放した。ナンバーを外す日、役所の人は終始事務的で、それがありがたかった。夜に蒼が理由もなく泣いて暴れる時期もあった。叱らず、小さな背中に掌を置いたまま、泣き声が自分の呼吸に合ってくるのを待った。待つことなら、それも得意になった。</p>
@@ -71,6 +75,35 @@
 <a href="../../index.html">トップへ戻る</a>
 </div>
 </footer>
+<script>
+(() => {
+  const prose = document.getElementById("story-body");
+  const toggle = document.getElementById("writing-toggle");
+  const hint = document.getElementById("writing-hint");
+  if (!prose || !toggle || !hint) return;
+
+  const storageKey = "tsukiyo-writing-mode";
+  const applyMode = (vertical, persist = false) => {
+    prose.classList.toggle("vertical", vertical);
+    toggle.setAttribute("aria-pressed", String(vertical));
+    toggle.textContent = vertical ? "横書きに戻す" : "縦書きで読む";
+    hint.textContent = vertical ? "右から左へ横に送って読みます。" : "";
+    prose.scrollLeft = 0;
+    if (persist) {
+      try {
+        localStorage.setItem(storageKey, vertical ? "vertical" : "horizontal");
+      } catch {}
+    }
+  };
+
+  let vertical = false;
+  try {
+    vertical = localStorage.getItem(storageKey) === "vertical";
+  } catch {}
+  applyMode(vertical);
+  toggle.addEventListener("click", () => applyMode(!prose.classList.contains("vertical"), true));
+})();
+</script>
 </body>
 </html>
 

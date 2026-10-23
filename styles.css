@@ -34,8 +34,17 @@ img{max-width:100%;display:block}
 .story .deck figure{margin:0;text-align:center}
 .story .deck img.reversed{transform:rotate(180deg)}
 .story .deck figcaption{font-family:system-ui,sans-serif;font-size:.74rem;line-height:1.55;color:var(--muted);margin-top:9px}
+.reading-controls{width:min(680px,100%);min-height:34px;margin:0 auto 22px;display:flex;align-items:center;justify-content:flex-end;gap:14px;font-family:system-ui,sans-serif}
+.writing-toggle{appearance:none;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);padding:7px 15px;font:inherit;font-size:.78rem;letter-spacing:.08em;cursor:pointer}
+.writing-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.writing-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.writing-hint{color:var(--muted);font-size:.72rem}
 .prose{width:min(680px,100%);margin-inline:auto;font-size:1.075rem;line-height:2.05}
 .prose p{margin:0 0 1.65em}
+.prose:focus-visible{outline:2px solid var(--gold);outline-offset:8px}
+.prose.vertical{width:100%;max-width:none;height:min(72vh,720px);min-height:520px;padding:30px 32px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-inline:contain;writing-mode:vertical-rl;text-orientation:mixed;border-top:1px solid var(--line);border-bottom:1px solid var(--line);scrollbar-color:var(--gold) var(--panel)}
+.prose.vertical p{margin:0 0 0 1.65em}
+.prose.vertical blockquote{margin:0 0 0 1.65em}
 .process{margin-top:72px;border:1px solid var(--line);background:var(--panel)}
 .process summary{cursor:pointer;padding:20px 24px;font-family:system-ui,sans-serif;letter-spacing:.08em}
 .process-body{padding:4px 24px 26px;border-top:1px solid var(--line)}
@@ -59,8 +68,12 @@ img{max-width:100%;display:block}
 .story-header h1{font-size:clamp(2.15rem,11vw,3rem);line-height:1.32}
 .story .deck{gap:8px;margin:30px auto 44px}
 .story .deck figcaption{font-size:.68rem;line-height:1.45}
+.reading-controls{margin-bottom:18px;justify-content:center;flex-wrap:wrap}
+.writing-hint{flex-basis:100%;min-height:1.45em;text-align:center}
 .prose{font-size:1rem;line-height:1.95}
 .prose p{margin-bottom:1.55em}
+.prose.vertical{height:68svh;min-height:420px;padding:24px 20px;font-size:1rem;line-height:1.9}
+.prose.vertical p{margin:0 0 0 1.55em}
 .nav{flex-wrap:wrap}
 }
 

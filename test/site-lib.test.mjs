@@ -51,6 +51,10 @@ test("公開タイトルだけを使用し、注意書きを末尾に置く", ()
   ];
   const html = renderStoryPage(buildStoryFromPage(page, blocks));
   assert.match(html, /<h1>公開する題名<\/h1>/);
+  assert.match(html, /id="writing-toggle"/);
+  assert.match(html, /縦書きで読む/);
+  assert.match(html, /id="story-body"/);
+  assert.match(html, /tsukiyo-writing-mode/);
   assert.doesNotMatch(html, /内部制作タイトル/);
   assert.ok(html.indexOf("この物語は実在人物") > html.indexOf("<h2>三枚のカード</h2>"));
 });
