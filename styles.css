@@ -27,15 +27,15 @@ img{max-width:100%;display:block}
 .story-row .date{font-family:system-ui,sans-serif;color:var(--muted);font-size:.82rem}
 .story-row .title{font-size:1.25rem}
 .story-row .arrow{color:var(--gold)}
-.story{width:min(760px,calc(100% - 40px));margin:auto;padding:70px 0 100px}
-.story-header{text-align:center;margin-bottom:56px}
-.story-header h1{font-size:clamp(2.2rem,7vw,4rem);font-weight:500;letter-spacing:.04em;line-height:1.25;word-break:keep-all;margin:.25em 0}
-.story .deck{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:min(600px,100%);margin:48px auto}
+.story{width:min(760px,calc(100% - 40px));margin:auto;padding:54px 0 100px}
+.story-header{text-align:center;margin-bottom:38px}
+.story-header h1{max-width:12em;margin:.25em auto;font-size:clamp(2.2rem,7vw,4rem);font-weight:500;letter-spacing:.04em;line-height:1.25;word-break:keep-all;text-wrap:balance}
+.story .deck{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:min(520px,100%);margin:36px auto 54px}
 .story .deck figure{margin:0;text-align:center}
 .story .deck img.reversed{transform:rotate(180deg)}
-.story .deck figcaption{font-family:system-ui,sans-serif;font-size:.75rem;color:var(--muted);margin-top:8px}
-.prose{font-size:1.05rem}
-.prose p{margin:0 0 1.7em}
+.story .deck figcaption{font-family:system-ui,sans-serif;font-size:.74rem;line-height:1.55;color:var(--muted);margin-top:9px}
+.prose{width:min(680px,100%);margin-inline:auto;font-size:1.075rem;line-height:2.05}
+.prose p{margin:0 0 1.65em}
 .process{margin-top:72px;border:1px solid var(--line);background:var(--panel)}
 .process summary{cursor:pointer;padding:20px 24px;font-family:system-ui,sans-serif;letter-spacing:.08em}
 .process-body{padding:4px 24px 26px;border-top:1px solid var(--line)}
@@ -54,7 +54,13 @@ img{max-width:100%;display:block}
 .card-fan img:nth-child(2){left:50%;transform:translateX(-50%)}
 .story-row{grid-template-columns:1fr auto}
 .story-row .date{grid-column:1/-1}
-.story .deck{gap:8px}
+.story{width:min(100% - 32px,760px);padding:42px 0 76px}
+.story-header{margin-bottom:30px}
+.story-header h1{font-size:clamp(2.15rem,11vw,3rem);line-height:1.32}
+.story .deck{gap:8px;margin:30px auto 44px}
+.story .deck figcaption{font-size:.68rem;line-height:1.45}
+.prose{font-size:1rem;line-height:1.95}
+.prose p{margin-bottom:1.55em}
 .nav{flex-wrap:wrap}
 }
 
