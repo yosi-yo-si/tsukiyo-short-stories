@@ -1,0 +1,51 @@
+name: Sync approved Notion stories
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: notion-publish-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Import approved stories
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: npm run sync:notion
+
+      - name: Verify generated site
+        run: |
+          npm test
+          npm run check
+          npm run build
+
+      - name: Open or update the approval pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/notion-publish
+          delete-branch: true
+          commit-message: "Publish approved Notion stories"
+          title: "Publish approved Notion stories"
+          body: |
+            Notionで「公開先：月夜の短編集」「公開状態：公開承認」になった作品を取り込みました。
+
+            - 公開タイトルだけを使用します
+            - 制作タイトル、データベース名、内部メモは公開しません
+            - このPRをマージするとCloudflare Pagesへの公開が始まります
+          labels: automated-publish
+

@@ -1,0 +1,13 @@
+{
+  "name": "tsukiyo-short-stories",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "check": "node scripts/check-site.mjs",
+    "sync:notion": "node scripts/sync-notion.mjs",
+    "mark:published": "node scripts/mark-published.mjs",
+    "test": "node --test"
+  }
+}
+

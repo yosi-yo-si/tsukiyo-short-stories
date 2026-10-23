@@ -1,0 +1,15 @@
+[
+  {
+    "date": "2026-10-23",
+    "title": "いつもの、小さいほう",
+    "category": "社会",
+    "path": "stories/2026-10-23/",
+    "notionPageId": "40212bbb-9587-8187-ba06-ec6e6f4158ac",
+    "cards": [
+      { "position": "過去", "number": "08", "name": "力", "orientation": "正位置" },
+      { "position": "現在", "number": "12", "name": "吊るされた男", "orientation": "正位置" },
+      { "position": "未来", "number": "21", "name": "世界", "orientation": "正位置" }
+    ]
+  }
+]
+
