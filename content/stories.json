@@ -53,5 +53,61 @@
         "orientation": "逆位置"
       }
     ]
+  },
+  {
+    "date": "2026-10-24",
+    "title": "満充電",
+    "category": "地域",
+    "path": "stories/2026-10-24-2/",
+    "notionPageId": "40312bbb-9587-811b-8959-f97efc257efb",
+    "notionLastEditedTime": "2026-10-24T14:21:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "13",
+        "name": "死神",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "09",
+        "name": "隠者",
+        "orientation": "逆位置"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-25",
+    "title": "閉架",
+    "category": "経済",
+    "path": "stories/2026-10-25/",
+    "notionPageId": "40312bbb-9587-81ca-8471-dbf77e8e6556",
+    "notionLastEditedTime": "2026-10-24T14:21:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "09",
+        "name": "隠者",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "18",
+        "name": "月",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "正位置"
+      }
+    ]
   }
 ]
