@@ -172,8 +172,9 @@ export function assignStoryPath(stories, story) {
   // 一度割り当てたURLは、公開日が変わっても固定する。
   const existing = stories.find((item) => item.notionPageId === story.notionPageId);
   if (existing?.path) return existing.path;
+  // 公開日を変えた作品も元のURLを持ち続けるので、日付に関係なく使用中のURLを避ける。
   const used = new Set(stories
-    .filter((item) => item.date === story.date && item.notionPageId !== story.notionPageId)
+    .filter((item) => item.notionPageId !== story.notionPageId)
     .map((item) => item.path));
   let sequence = 1;
   while (used.has(storyPathFor(story.date, sequence))) sequence += 1;

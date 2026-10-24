@@ -79,15 +79,33 @@ test("公開日を変えた公開済み作品はURLを維持して更新扱い",
   assert.deepEqual(result.prepared, [{ notionPageId: "old", title: "見送る手（改）", path: "stories/2026-10-24/", kind: "updated" }]);
 });
 
-test("内容が変わらない作品は公開候補に含めないが、検証対象には数える", async () => {
-  const story = { ...published, storyHtml: "<p>本文</p>" };
-  const html = renderStoryPage({ ...story, newsHeadline: "", newsSummary: "", verification: "", person: "", personSetting: "" });
-  const result = await run([page("old", { title: "見送る手", edited: "2026-10-25T00:00:00Z" })], {
-    files: { "stories/2026-10-24/index.html": html }
+const publishedHtml = renderStoryPage({
+  ...published, storyHtml: "<p>本文</p>", newsHeadline: "", newsSummary: "", verification: "", person: "", personSetting: ""
+});
+
+test("内容も編集日時も変わらない作品は公開候補に含めないが、検証対象には数える", async () => {
+  const result = await run([page("old", { title: "見送る手" })], {
+    files: { "stories/2026-10-24/index.html": publishedHtml }
   });
   assert.equal(result.status, "nothing");
   assert.equal(result.candidates, 1);
-  assert.equal(result.prepared.length, 0);
+  assert.equal(result.writes.size, 0);
+});
+
+test("本文が同じで編集日時だけ進んだ作品は、記録だけ更新して公開済みにできるようにする", async () => {
+  const result = await run([page("old", { title: "見送る手", edited: "2026-10-25T00:00:00Z" })], {
+    files: { "stories/2026-10-24/index.html": publishedHtml }
+  });
+  assert.equal(result.status, "prepared");
+  assert.equal(result.prepared[0].kind, "updated");
+  assert.ok(!result.writes.has("stories/2026-10-24/index.html"));
+  assert.equal(result.nextStories[0].notionLastEditedTime, "2026-10-25T00:00:00Z");
+});
+
+test("公開日を移した作品の元URLは、同じ日付の新作に再利用しない", async () => {
+  const moved = { ...published, date: "2026-10-30" };
+  const result = await run([page("a", { date: "2026-10-24" })], { currentStories: [moved] });
+  assert.equal(result.prepared[0].path, "stories/2026-10-24-2/");
 });
 
 test("本文の取得失敗は全体停止", async () => {

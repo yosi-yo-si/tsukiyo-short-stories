@@ -30,8 +30,7 @@ function publicRecord(story) {
   };
 }
 
-// 編集日時だけの差は「変更なし」とみなす。
-function sameRecord(a, b) {
+function sameContent(a, b) {
   if (!a || !b) return false;
   const strip = ({ notionLastEditedTime, ...rest }) => rest;
   return JSON.stringify(strip(a)) === JSON.stringify(strip(b));
@@ -80,9 +79,12 @@ export async function prepareSync({ approvedPages, fetchBlocks, currentStories, 
     const existingIndex = nextStories.findIndex((item) => item.notionPageId === story.notionPageId);
     const existing = existingIndex >= 0 ? nextStories[existingIndex] : null;
     const existingHtml = await readExisting(`${story.path}index.html`);
-    if (existingHtml === html && sameRecord(existing, record)) continue;
+    const contentUnchanged = existingHtml === html && sameContent(existing, record);
+    if (contentUnchanged && existing.notionLastEditedTime === record.notionLastEditedTime) continue;
 
-    writes.set(`${story.path}index.html`, html);
+    // 本文が同じでも編集日時が進んでいれば記録だけ更新する。
+    // これを怠ると mark-published が「未反映の変更あり」と判断し、公開済みにできなくなる。
+    if (!contentUnchanged) writes.set(`${story.path}index.html`, html);
     if (existing) nextStories[existingIndex] = record;
     else nextStories.push(record);
     prepared.push({ notionPageId: story.notionPageId, title: story.title, path: story.path, kind: existing ? "updated" : "new" });
