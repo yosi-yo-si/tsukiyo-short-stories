@@ -32,15 +32,32 @@ test('uses the actual checked-out main rather than the stale event SHA', async (
 });
 test('main movement requests a fresh full sync and never merges stale output', async () => {
   const { github, calls } = fixture({ moved: true });
-  await assert.rejects(mergeOrRetry({ ...args, github }), /Main changed/);
+  assert.deepEqual(await mergeOrRetry({ ...args, github }), { outcome: 'retry_requested' });
   assert.equal(calls.length, 1);
   assert.deepEqual(calls[0].inputs, { retry_count: '1' });
   assert.equal(calls[0].ref, 'main');
 });
 test('retry limit prevents an endless dispatch chain', async () => {
   const { github, calls } = fixture({ moved: true });
-  await assert.rejects(mergeOrRetry({ ...args, github, retryCount: 2 }), /Main changed/);
+  await assert.rejects(mergeOrRetry({ ...args, github, retryCount: 2 }), { code: 'MAIN_CHANGED' });
   assert.deepEqual(calls, []);
+});
+
+test('retry decision uses the error code rather than message text', async () => {
+  const { github, calls } = fixture();
+  github.rest.repos.getBranch = async () => { throw Object.assign(new Error('任意の文言'), { code: 'MAIN_CHANGED' }); };
+  assert.deepEqual(await mergeOrRetry({ ...args, github }), { outcome: 'retry_requested' });
+  assert.equal(calls[0].workflow_id, 'sync-notion.yml');
+  calls.length = 0;
+  github.rest.repos.getBranch = async () => { throw new Error('Main changed; retry with the latest main'); };
+  await assert.rejects(mergeOrRetry({ ...args, github }), /Main changed/);
+  assert.deepEqual(calls, []);
+});
+
+test('a failed retry dispatch remains an actual job failure', async () => {
+  const { github } = fixture({ moved: true });
+  github.rest.actions.createWorkflowDispatch = async () => { throw new Error('dispatch unavailable'); };
+  await assert.rejects(mergeOrRetry({ ...args, github }), /dispatch unavailable/);
 });
 
 test("keeps repo from an Actions-style context whose repo is a prototype getter", async () => {

@@ -40,9 +40,10 @@ export async function setIncident(env, key, text, active = true) {
 }
 
 export async function recordReport(env, payload) {
-  const { kind = 'sync', run_id: runId, attempt, result, report } = payload;
+  const { kind = 'sync', run_id: runId, attempt, result, report, sync_outcome: outcome = 'complete' } = payload;
   if (!['sync', 'deploy'].includes(kind) || !/^\d+$/.test(String(runId))
     || !Number.isInteger(attempt) || attempt < 1
+    || !['complete', 'merged', 'retry_requested'].includes(outcome)
     || !['success', 'failure', 'cancelled', 'skipped'].includes(result)) {
     throw new Error('Invalid report envelope');
   }
@@ -63,6 +64,13 @@ export async function recordReport(env, payload) {
         const oldKeys = JSON.parse(await env.STATE.get('held-keys') || '[]');
         for (const key of oldKeys) if (!keys.includes(key)) await setIncident(env, `held:${key}`, '', false);
         await env.STATE.put('held-keys', JSON.stringify(keys));
+        // A successful dispatch of a retry has not completed this snapshot.
+        // Failed jobs and missing reports must remain eligible for another attempt.
+        const syncStart = Date.parse(report.ran_at);
+        if (outcome !== 'retry_requested' && Number.isFinite(syncStart)) {
+          const previousStart = Number(await env.STATE.get('last-successful-sync-start') || 0);
+          if (syncStart > previousStart) await env.STATE.put('last-successful-sync-start', String(syncStart));
+        }
       }
     }
   }
@@ -70,22 +78,26 @@ export async function recordReport(env, payload) {
   await env.STATE.put(`last-report:${kind}`, JSON.stringify({ order, at: Date.now(), result }));
 }
 
-export async function approvedExists(env) {
+export async function latestApprovedEdit(env) {
   const result = await jsonRequest(`https://api.notion.com/v1/data_sources/${env.NOTION_DATA_SOURCE_ID}/query`, {
     method: 'POST', headers: {
       Authorization: `Bearer ${env.NOTION_TOKEN}`, 'Notion-Version': env.NOTION_VERSION,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ page_size: 1, filter: { and: [
+    body: JSON.stringify({ page_size: 1,
+      sorts: [{ timestamp: 'last_edited_time', direction: 'descending' }], filter: { and: [
       { property: '公開状態', select: { equals: '公開承認' } },
       { property: '公開先', select: { equals: env.PUBLISH_TARGET } }
     ] } })
   });
   if (!Array.isArray(result.results)) throw new Error('Invalid Notion query response');
-  return result.results.length > 0;
+  if (!result.results.length) return null;
+  const timestamp = Date.parse(result.results[0].last_edited_time);
+  if (!Number.isFinite(timestamp)) throw new Error('Invalid approved last_edited_time');
+  return timestamp;
 }
 
-export async function tick(env, { now = Date.now(), api = githubRequest, approved = approvedExists } = {}) {
+export async function tick(env, { now = Date.now(), api = githubRequest, approved = latestApprovedEdit } = {}) {
   if (!env.STATE || !env.GITHUB_TOKEN || !env.NOTION_TOKEN || !env.MONITOR_TOKEN || !env.ALERT_WEBHOOK_URL) {
     throw new Error('Monitor secrets or STATE binding are missing');
   }
@@ -114,16 +126,18 @@ export async function tick(env, { now = Date.now(), api = githubRequest, approve
       && (!lastReport || lastReport.order < `${String(run.id).padStart(24, '0')}:${String(run.run_attempt || 1).padStart(8, '0')}`);
     await setIncident(env, `${workflow}-callback-missing`, `${workflow} の監視レポートが30分以上届いていません。 ${run?.html_url ?? ''}`, Boolean(missing));
     if (workflow === SYNC) {
-      const hasApproved = await approved(env);
+      const latestEdit = await approved(env);
+      const lastSyncStart = Number(await env.STATE.get('last-successful-sync-start') || 0);
+      const needsSync = latestEdit !== null && latestEdit >= lastSyncStart;
       const pendingSince = Number(await env.STATE.get('pending-since') || now);
-      if (hasApproved) {
+      if (needsSync) {
         if (!await env.STATE.get('pending-since')) await env.STATE.put('pending-since', String(now));
       } else if (await env.STATE.get('pending-since')) await env.STATE.delete('pending-since');
-      const idle = hasApproved && now - pendingSince > 2 * HOUR
+      const idle = needsSync && now - pendingSince > 2 * HOUR
         && (!lastReport || now - lastReport.at > 2 * HOUR);
       await setIncident(env, 'sync-silent', '公開承認作品がありますが、同期レポートが2時間以上届いていません。', idle);
       const lastDispatch = Number(await env.STATE.get('last-dispatch') || 0);
-      if (hasApproved && !active.some(x => ACTIVE.has(x.status)) && now - lastDispatch > 10 * 60000) {
+      if (needsSync && !active.some(x => ACTIVE.has(x.status)) && now - lastDispatch > 10 * 60000) {
         await api(env, `actions/workflows/${SYNC}/dispatches`, { method: 'POST', body: JSON.stringify({ ref: 'main' }) });
         await env.STATE.put('last-dispatch', String(now));
       }

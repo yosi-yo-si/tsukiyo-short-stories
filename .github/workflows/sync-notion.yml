@@ -70,6 +70,7 @@ jobs:
           labels: automated-publish
 
       - name: Merge verified publication and start deployment
+        id: merge
         if: steps.publication.outputs.pull-request-number != ''
         uses: actions/github-script@v7
         env:
@@ -82,13 +83,14 @@ jobs:
             const { mergeOrRetry } = await import(
               `file://${process.env.GITHUB_WORKSPACE}/scripts/publication-retry.mjs`
             );
-            await mergeOrRetry({
+            const result = await mergeOrRetry({
               github, context,
               number: Number(process.env.PUBLICATION_NUMBER),
               expectedSha: process.env.PUBLICATION_SHA,
               mainSha: process.env.CHECKED_OUT_MAIN_SHA,
               retryCount: Number(process.env.RETRY_COUNT)
             });
+            core.setOutput('outcome', result.outcome);
 
 
       - name: Preserve synchronization report
@@ -106,4 +108,5 @@ jobs:
           SYNC_MONITOR_URL: ${{ secrets.SYNC_MONITOR_URL }}
           SYNC_MONITOR_TOKEN: ${{ secrets.SYNC_MONITOR_TOKEN }}
           JOB_RESULT: ${{ job.status }}
+          SYNC_OUTCOME: ${{ steps.merge.outputs.outcome || 'complete' }}
         run: node scripts/send-sync-report.mjs
