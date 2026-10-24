@@ -2,8 +2,13 @@ name: Sync approved Notion stories
 
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "17 */4 * * *"
   workflow_dispatch:
+    inputs:
+      retry_count:
+        description: Automatic retries after main advances (maximum 2)
+        default: "0"
+        type: string
 
 permissions:
   contents: write
@@ -17,8 +22,15 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Record checked-out main
+        id: revision
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-node@v4
         with:
@@ -63,13 +75,35 @@ jobs:
         env:
           PUBLICATION_NUMBER: ${{ steps.publication.outputs.pull-request-number }}
           PUBLICATION_SHA: ${{ steps.publication.outputs.pull-request-head-sha }}
+          CHECKED_OUT_MAIN_SHA: ${{ steps.revision.outputs.sha }}
+          RETRY_COUNT: ${{ inputs.retry_count || '0' }}
         with:
           script: |
-            const { mergePublication } = await import(
-              `file://${process.env.GITHUB_WORKSPACE}/scripts/merge-publication.mjs`
+            const { mergeOrRetry } = await import(
+              `file://${process.env.GITHUB_WORKSPACE}/scripts/publication-retry.mjs`
             );
-            await mergePublication({
+            await mergeOrRetry({
               github, context,
               number: Number(process.env.PUBLICATION_NUMBER),
-              expectedSha: process.env.PUBLICATION_SHA
+              expectedSha: process.env.PUBLICATION_SHA,
+              mainSha: process.env.CHECKED_OUT_MAIN_SHA,
+              retryCount: Number(process.env.RETRY_COUNT)
             });
+
+
+      - name: Preserve synchronization report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sync-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: sync-report.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Report synchronization outcome
+        if: always()
+        env:
+          SYNC_MONITOR_URL: ${{ secrets.SYNC_MONITOR_URL }}
+          SYNC_MONITOR_TOKEN: ${{ secrets.SYNC_MONITOR_TOKEN }}
+          JOB_RESULT: ${{ job.status }}
+        run: node scripts/send-sync-report.mjs

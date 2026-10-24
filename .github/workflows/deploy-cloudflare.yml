@@ -53,3 +53,13 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: npm run mark:published
+
+
+      - name: Report production deployment outcome
+        if: always()
+        env:
+          SYNC_MONITOR_URL: ${{ secrets.SYNC_MONITOR_URL }}
+          SYNC_MONITOR_TOKEN: ${{ secrets.SYNC_MONITOR_TOKEN }}
+          MONITOR_KIND: deploy
+          JOB_RESULT: ${{ job.status }}
+        run: node scripts/send-sync-report.mjs
