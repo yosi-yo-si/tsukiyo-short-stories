@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 concurrency:
   group: notion-publish-sync
@@ -35,8 +36,15 @@ jobs:
           npm run build
 
       - name: Open or update the approval pull request
+        id: publication
         uses: peter-evans/create-pull-request@v7
         with:
+          add-paths: |
+            content/stories.json
+            stories/**/index.html
+            index.html
+            archive-date.html
+            archive-title.html
           branch: automation/notion-publish
           delete-branch: true
           commit-message: "Publish approved Notion stories"
@@ -46,6 +54,22 @@ jobs:
 
             - 公開タイトルだけを使用します
             - 制作タイトル、データベース名、内部メモは公開しません
-            - このPRをマージするとCloudflare Pagesへの公開が始まります
+            - 記事ファイルだけの変更で検証に成功すると、自動マージしてCloudflare Pagesへ公開します
           labels: automated-publish
 
+      - name: Merge verified publication and start deployment
+        if: steps.publication.outputs.pull-request-number != ''
+        uses: actions/github-script@v7
+        env:
+          PUBLICATION_NUMBER: ${{ steps.publication.outputs.pull-request-number }}
+          PUBLICATION_SHA: ${{ steps.publication.outputs.pull-request-head-sha }}
+        with:
+          script: |
+            const { mergePublication } = await import(
+              `file://${process.env.GITHUB_WORKSPACE}/scripts/merge-publication.mjs`
+            );
+            await mergePublication({
+              github, context,
+              number: Number(process.env.PUBLICATION_NUMBER),
+              expectedSha: process.env.PUBLICATION_SHA
+            });

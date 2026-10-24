@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      commit_sha:
+        description: Exact merged publication commit to deploy
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -19,6 +24,12 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit_sha || github.sha }}
+
+      - name: Record deployed commit
+        id: revision
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-node@v4
         with:
@@ -35,11 +46,10 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=tsukiyo-short-stories --branch=main --commit-hash=${{ github.sha }}
+          command: pages deploy dist --project-name=tsukiyo-short-stories --branch=main --commit-hash=${{ steps.revision.outputs.sha }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Mark deployed stories as published in Notion
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: npm run mark:published
-
