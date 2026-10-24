@@ -13,7 +13,8 @@ export async function sendReport({ env = process.env, request = fetch } = {}) {
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.SYNC_MONITOR_TOKEN}` },
     body: JSON.stringify({
       run_id: env.GITHUB_RUN_ID, attempt: Number(env.GITHUB_RUN_ATTEMPT || 1),
-      kind: env.MONITOR_KIND || 'sync', result: env.JOB_RESULT, report
+      kind: env.MONITOR_KIND || 'sync', result: env.JOB_RESULT,
+      sync_outcome: env.SYNC_OUTCOME || 'complete', report
     })
   });
   if (!response.ok) throw new Error(`Sync monitor HTTP ${response.status}`);

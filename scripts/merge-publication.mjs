@@ -26,7 +26,11 @@ export async function mergePublication({ github, context, number, expectedSha })
   });
   // Fail closed if main moved since this run checked out and verified the site.
   const { data: base } = await github.rest.repos.getBranch({ ...repo, branch: "main" });
-  if (base.commit.sha !== context.sha) throw new Error("Main changed; retry with the latest main");
+  if (base.commit.sha !== context.sha) {
+    const error = new Error("Main changed; retry with the latest main");
+    error.code = "MAIN_CHANGED";
+    throw error;
+  }
   const { data: merge } = await github.rest.pulls.merge({
     ...repo, pull_number: number, sha: expectedSha, merge_method: "squash"
   });
