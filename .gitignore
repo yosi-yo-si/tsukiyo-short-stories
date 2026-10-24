@@ -2,3 +2,8 @@ dist/
 .DS_Store
 
 sync-report.json
+
+.wrangler/
+.dev.vars*
+
+.env*
