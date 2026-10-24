@@ -24,6 +24,13 @@ for (const story of stories) {
   const status = selectProperty(page.properties?.["公開状態"]);
   const currentUrl = urlProperty(page.properties?.["公開URL"]);
   if (status === "公開済み" && currentUrl === expectedUrl) continue;
+  // 公開版より後にNotionが編集されている（保留中の更新など）なら、公開済みにしない。
+  // 承認のまま残し、次の同期で改めて検証する。
+  if (status !== "公開済み" && story.notionLastEditedTime
+    && Date.parse(page.last_edited_time) > Date.parse(story.notionLastEditedTime)) {
+    console.log(`未反映の変更があるため公開済みにしません: ${story.title}`);
+    continue;
+  }
   await notionRequest(`https://api.notion.com/v1/pages/${story.notionPageId}`, {
     method: "PATCH",
     body: JSON.stringify({

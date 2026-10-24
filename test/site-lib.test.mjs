@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { assignStoryPath, buildStoryFromPage, compareStories, extractStoryHtml, parseCard, renderStoryPage, storySequence } from "../scripts/site-lib.mjs";
+import { StoryValidationError, assignStoryPath, buildStoryFromPage, compareStories, extractStoryHtml, parseCard, renderStoryPage, storySequence } from "../scripts/site-lib.mjs";
 
 const rich = (content) => [{ plain_text: content, text: { content }, annotations: {} }];
 
@@ -66,6 +66,8 @@ test("同じ公開日の作品には連番URLを割り当て、既存URLは変�
   ];
   assert.equal(assignStoryPath(stories, { date: "2026-10-24", notionPageId: "b" }), "stories/2026-10-24-2/");
   assert.equal(assignStoryPath(stories, { date: "2026-10-24", notionPageId: "a" }), "stories/2026-10-24/");
+  // 公開日が変わっても、割り当て済みのURLは固定
+  assert.equal(assignStoryPath(stories, { date: "2026-10-30", notionPageId: "a" }), "stories/2026-10-24/");
   assert.equal(assignStoryPath(stories, { date: "2026-10-25", notionPageId: "c" }), "stories/2026-10-25/");
   const withSecond = [...stories, { date: "2026-10-24", path: "stories/2026-10-24-2/", notionPageId: "b" }];
   assert.equal(assignStoryPath(withSecond, { date: "2026-10-24", notionPageId: "b" }), "stories/2026-10-24-2/");
@@ -81,4 +83,9 @@ test("一覧は公開日、同日内は公開順で並べる", () => {
   assert.deepEqual([...stories].sort(compareStories).map((s) => s.path),
     ["stories/2026-10-24/", "stories/2026-10-24-2/", "stories/2026-10-25/"]);
   assert.equal(storySequence("stories/2026-10-24-12/"), 12);
+});
+
+test("検証エラーには保留理由のコードが付く", () => {
+  assert.throws(() => parseCard("過去", "不明なカード", "正位置"), (e) => e instanceof StoryValidationError && e.code === "INVALID_CARD");
+  assert.throws(() => extractStoryHtml([]), (e) => e.code === "NO_STORY_BODY");
 });

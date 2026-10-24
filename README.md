@@ -17,6 +17,26 @@
 
 制作タイトルの`題名`、Notionのデータベース名、内部メモは公開判定にも公開HTMLにも使いません。`公開タイトル`が空の場合は処理を失敗させ、制作タイトルを代用しない設計です。同じ公開日に複数作品がある場合は、2作目以降を`stories/YYYY-MM-DD-2/`のような連番URLで公開します（1作目のURLは変わりません）。
 
+## 検証と保留
+
+承認済み作品は1件ずつ検証します。公開タイトル空・公開日不正・カード名不正・本文なしの作品は**保留**とし、ほかの正常な作品は公開を続けます。保留作品のHTMLは書かず、公開済み作品の更新が不正な場合は直前の公開版を残します。Notionの承認状態は自動で変更しません。
+
+Notionの取得失敗・設定不正・URL衝突・生成サイトの検証失敗は、全体を停止します。
+
+一度割り当てた公開URLは、公開日を変更しても固定です。
+
+## 同期結果レポート
+
+同期のたびに`sync-report.json`（Git管理外）を出力し、同じ内容をジョブのサマリーに表示します。
+
+- `status`：`prepared`（公開候補あり。保留が混在する場合も含む）／`nothing`／`held_only`／`fatal`
+- `candidates`：承認・対象条件を確認して作品検証に進めた件数（変更なしの作品も含む）
+- `prepared`：公開候補（`kind`は`new`／`updated`）。この時点では本番公開前
+- `held`：保留作品と理由（`EMPTY_TITLE`／`INVALID_DATE`／`INVALID_CARD`／`NO_STORY_BODY`／`WRONG_TARGET`）
+- `fatal`：全体停止の理由（`NOTION_FETCH_FAILED`／`CONFIG_INVALID`／`PATH_COLLISION`／`SITE_CHECK_FAILED`。想定外のエラーは`UNEXPECTED`）
+
+全体停止時も可能な限りレポートを出力し、非ゼロで終了します。
+
 ## 初回設定
 
 GitHubリポジトリのActions secretsに次を登録します。
