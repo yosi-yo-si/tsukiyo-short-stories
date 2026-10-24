@@ -15,12 +15,12 @@ const files = [{ filename: "stories/2026-10-24/index.html", status: "added" }];
 const options = { repository: "owner/blog", expectedSha: sha };
 
 test("accepts generated article and index updates", () => {
-  for (const filename of ["stories/2026-10-24/index.html", "content/stories.json", "index.html", "archive-title.html", "archive-date.html"]) {
+  for (const filename of ["stories/2026-10-24/index.html", "stories/2026-10-24-2/index.html", "content/stories.json", "index.html", "archive-title.html", "archive-date.html"]) {
     validatePublication(fixture(), [{ filename, status: "modified" }], options);
   }
 });
 test("rejects code, workflow, assets, deleted, renamed, and hidden paths", () => {
-  for (const filename of ["scripts/site-lib.mjs", ".github/workflows/sync-notion.yml", "styles.css", "stories/../../index.html", "stories/2026-10-24/other.html"]) {
+  for (const filename of ["scripts/site-lib.mjs", ".github/workflows/sync-notion.yml", "styles.css", "stories/../../index.html", "stories/2026-10-24/other.html", "stories/2026-10-24-0/index.html", "stories/2026-10-24-x/index.html"]) {
     assert.throws(() => validatePublication(fixture(), [{ filename, status: "modified" }], options));
   }
   for (const status of ["removed", "renamed"]) {
