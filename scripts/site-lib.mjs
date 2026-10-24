@@ -107,7 +107,7 @@ export function extractStoryHtml(blocks) {
       continue;
     }
     if (block.type === "divider" || (block.type === "heading_2" && text.includes("制作記録"))) break;
-    if (block.type === "paragraph" && /^[(（]約?[\d,，]+字[)）]$/.test(text)) continue;
+    if (block.type === "paragraph" && /^[(（](?:約?[\d,，]+字|字数[:：].*)[)）]$/.test(text)) continue;
 
     const isList = block.type === "bulleted_list_item" || block.type === "numbered_list_item";
     if (isList && listType !== block.type) {
@@ -153,8 +153,28 @@ export function buildStoryFromPage(page, blocks) {
     newsSummary: textProperty(props["ニュース概要"]),
     verification: textProperty(props["裏付け状況"]),
     person: textProperty(props["人物"]),
-    personSetting: textProperty(props["人物設定"])
+    personSetting: textProperty(props["人物設定"]),
+    reading: buildReading(props)
   };
+}
+
+// 占いの記録（相談文とAIの読み解き）。相談文と三枚の読み解きが揃っている作品だけ記録ページを作る。
+export function buildReading(props = {}) {
+  const reading = {
+    consultation: textProperty(props["相談文"]),
+    question: textProperty(props["AI問いかけ"]),
+    past: textProperty(props["AI読解 過去"]),
+    present: textProperty(props["AI読解 現在"]),
+    future: textProperty(props["AI読解 未来"]),
+    summary: textProperty(props["AI読解 まとめ"])
+  };
+  if (!reading.consultation || !reading.past || !reading.present || !reading.future) return null;
+  return reading;
+}
+
+function paragraphs(text = "") {
+  return String(text).split(/\n+|<br\s*\/?>/i).map((line) => line.trim()).filter(Boolean)
+    .map((line) => `<p>${escapeHtml(line)}</p>`).join("");
 }
 
 // 新しい作品の公開日に応じて stories/YYYY-MM-DD/、stories/YYYY-MM-DD-2/ … と連番にする。
@@ -196,10 +216,26 @@ export function renderStoryPage(story) {
   const cardItems = story.cards.map((card) => `<li>${escapeHtml(card.position)}：${escapeHtml(card.name)}（${escapeHtml(card.orientation)}）</li>`).join("");
   const news = [story.newsHeadline ? `題材は「${story.newsHeadline}」。` : "", story.newsSummary, story.verification].filter(Boolean).join(" ");
   const person = [story.person, story.personSetting].filter(Boolean).join("。 ");
+  const readingLink = story.reading ? `<a class="reading-link" href="reading/">この物語の元になった占いを読む<span aria-hidden="true">→</span></a>` : "";
   const noticeDate = `${story.date.slice(0, 4)}年${Number(story.date.slice(5, 7))}月${Number(story.date.slice(8, 10))}日`;
   const writingModeScript = `<script>(()=>{const prose=document.getElementById("story-body");const toggle=document.getElementById("writing-toggle");const hint=document.getElementById("writing-hint");if(!prose||!toggle||!hint)return;const storageKey="tsukiyo-writing-mode";const applyMode=(vertical,persist=false)=>{prose.classList.toggle("vertical",vertical);toggle.setAttribute("aria-pressed",String(vertical));toggle.textContent=vertical?"横書きに戻す":"縦書きで読む";hint.textContent=vertical?"右から左へ横に送って読みます。":"";prose.scrollLeft=0;if(persist){try{localStorage.setItem(storageKey,vertical?"vertical":"horizontal")}catch{}}};let vertical=false;try{vertical=localStorage.getItem(storageKey)==="vertical"}catch{}applyMode(vertical);toggle.addEventListener("click",()=>applyMode(!prose.classList.contains("vertical"),true))})();</script>`;
 
-  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${escapeHtml(story.date)}のニュースと三枚の大アルカナから生まれた短編小説。"><title>${escapeHtml(story.title)}｜月夜の短編集</title><link rel="stylesheet" href="../../styles.css"></head><body><header class="shell site-head"><a class="brand" href="../../index.html">月夜の短編集</a><nav class="nav"><a href="../../archive-date.html">日付から</a><a href="../../archive-title.html">題名から</a></nav></header><main class="story"><header class="story-header"><p class="meta">${dateLabel} ／ ${escapeHtml(story.category)}</p><h1>${escapeHtml(story.title)}</h1></header><div class="deck">${cards}</div><div class="reading-controls" aria-label="本文の表示"><button type="button" class="writing-toggle" id="writing-toggle" aria-controls="story-body" aria-pressed="false">縦書きで読む</button><span class="writing-hint" id="writing-hint" role="status" aria-live="polite"></span></div><article class="prose" id="story-body" tabindex="0" aria-label="短編本文">${story.storyHtml}</article><details class="process"><summary>制作過程を読む</summary><div class="process-body"><h2>ニュースと選定</h2><p>${escapeHtml(news)}</p><h2>人物</h2><p>${escapeHtml(person)}</p><h2>三枚のカード</h2><ul>${cardItems}</ul><p class="notice">この物語は実在人物を描いたものではありません。ニュースは${noticeDate}時点の報道を起点にしており、制度変更を既定事実としていません。</p></div></details></main><footer class="footer"><div class="shell"><a href="../../index.html">トップへ戻る</a></div></footer>${writingModeScript}</body></html>\n`;
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${escapeHtml(story.date)}のニュースと三枚の大アルカナから生まれた短編小説。"><title>${escapeHtml(story.title)}｜月夜の短編集</title><link rel="stylesheet" href="../../styles.css"></head><body><header class="shell site-head"><a class="brand" href="../../index.html">月夜の短編集</a><nav class="nav"><a href="../../archive-date.html">日付から</a><a href="../../archive-title.html">題名から</a></nav></header><main class="story"><header class="story-header"><p class="meta">${dateLabel} ／ ${escapeHtml(story.category)}</p><h1>${escapeHtml(story.title)}</h1></header><div class="deck">${cards}</div><div class="reading-controls" aria-label="本文の表示"><button type="button" class="writing-toggle" id="writing-toggle" aria-controls="story-body" aria-pressed="false">縦書きで読む</button><span class="writing-hint" id="writing-hint" role="status" aria-live="polite"></span></div><article class="prose" id="story-body" tabindex="0" aria-label="短編本文">${story.storyHtml}</article>${readingLink}<details class="process"><summary>制作過程を読む</summary><div class="process-body"><h2>ニュースと選定</h2><p>${escapeHtml(news)}</p><h2>人物</h2><p>${escapeHtml(person)}</p><h2>三枚のカード</h2><ul>${cardItems}</ul><p class="notice">この物語は実在人物を描いたものではありません。ニュースは${noticeDate}時点の報道を起点にしており、制度変更を既定事実としていません。</p></div></details></main><footer class="footer"><div class="shell"><a href="../../index.html">トップへ戻る</a></div></footer>${writingModeScript}</body></html>\n`;
+}
+
+export function renderReadingPage(story) {
+  const reading = story.reading;
+  const dateLabel = story.date.replaceAll("-", ".");
+  const byPosition = { "過去": reading.past, "現在": reading.present, "未来": reading.future };
+  const cards = story.cards.map((card) => {
+    const reversed = card.orientation === "逆位置" ? ' class="reversed"' : "";
+    const alt = `${card.name}・${card.orientation}`;
+    return `<section class="reading-card"><figure><img${reversed} src="../../../assets/tarot/${card.number}.svg" alt="${escapeHtml(alt)}"></figure><div><p class="label">${escapeHtml(card.position)}</p><h3>${escapeHtml(alt)}</h3>${paragraphs(byPosition[card.position])}</div></section>`;
+  }).join("");
+  const summary = reading.summary ? `<h2>まとめ</h2>${paragraphs(reading.summary)}` : "";
+  const question = reading.question ? `<p class="reading-question"><span class="label">カードからの問いかけ</span>${escapeHtml(reading.question)}</p>` : "";
+
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="短編「${escapeHtml(story.title)}」の元になった相談と、三枚の大アルカナの読み解き。"><title>占いの記録 ${escapeHtml(story.title)}｜月夜の短編集</title><link rel="stylesheet" href="../../../styles.css"></head><body><header class="shell site-head"><a class="brand" href="../../../index.html">月夜の短編集</a><nav class="nav"><a href="../../../archive-date.html">日付から</a><a href="../../../archive-title.html">題名から</a></nav></header><main class="story reading"><header class="story-header"><p class="meta">${dateLabel} ／ 占いの記録</p><h1>${escapeHtml(story.title)}</h1><p class="reading-lead">物語を書く前に、主人公の相談をそのままタロットに預けました。ここにあるのは、そのとき返ってきた読み解きです。</p></header><h2>相談</h2><blockquote class="consultation">${paragraphs(reading.consultation)}</blockquote><h2>三枚の読み解き</h2>${cards}${summary}${question}<p class="notice">読み解きは「月夜のアルカナ」のAIが、この相談と三枚から返したものです。小説は同じ三枚を、別の角度から書いています。相談者は物語のための架空の人物です。</p><a class="reading-link back" href="../"><span aria-hidden="true">←</span>物語に戻る</a></main><footer class="footer"><div class="shell"><a href="../../../index.html">トップへ戻る</a></div></footer></body></html>\n`;
 }
 
 function storyRow(story, titleMode = false) {

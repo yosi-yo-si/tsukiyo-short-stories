@@ -4,6 +4,7 @@ import {
   buildStoryFromPage,
   compareStories,
   renderIndexes,
+  renderReadingPage,
   renderStoryPage,
   selectProperty,
   textProperty
@@ -26,7 +27,9 @@ function publicRecord(story) {
     path: story.path,
     notionPageId: story.notionPageId,
     notionLastEditedTime: story.notionLastEditedTime,
-    cards: story.cards
+    cards: story.cards,
+    // 記録ページのない作品は従来どおりの形のまま残す。
+    ...(story.reading ? { hasReading: true } : {})
   };
 }
 
@@ -78,13 +81,19 @@ export async function prepareSync({ approvedPages, fetchBlocks, currentStories, 
     const record = publicRecord(story);
     const existingIndex = nextStories.findIndex((item) => item.notionPageId === story.notionPageId);
     const existing = existingIndex >= 0 ? nextStories[existingIndex] : null;
+    const readingPath = `${story.path}reading/index.html`;
+    const readingHtml = story.reading ? renderReadingPage(story) : null;
     const existingHtml = await readExisting(`${story.path}index.html`);
-    const contentUnchanged = existingHtml === html && sameContent(existing, record);
+    const existingReadingHtml = readingHtml ? await readExisting(readingPath) : null;
+    const contentUnchanged = existingHtml === html && existingReadingHtml === readingHtml && sameContent(existing, record);
     if (contentUnchanged && existing.notionLastEditedTime === record.notionLastEditedTime) continue;
 
     // 本文が同じでも編集日時が進んでいれば記録だけ更新する。
     // これを怠ると mark-published が「未反映の変更あり」と判断し、公開済みにできなくなる。
-    if (!contentUnchanged) writes.set(`${story.path}index.html`, html);
+    if (!contentUnchanged) {
+      writes.set(`${story.path}index.html`, html);
+      if (readingHtml) writes.set(readingPath, readingHtml);
+    }
     if (existing) nextStories[existingIndex] = record;
     else nextStories.push(record);
     prepared.push({ notionPageId: story.notionPageId, title: story.title, path: story.path, kind: existing ? "updated" : "new" });

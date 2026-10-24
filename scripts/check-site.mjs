@@ -21,6 +21,13 @@ for (const story of stories) {
     const cards = html.indexOf("<h2>三枚のカード</h2>");
     if (notice < cards) errors.push(`${story.path}: 注意書きは制作過程の末尾に置いてください。`);
     for (const card of story.cards) await access(path.join(ROOT, `assets/tarot/${card.number}.svg`));
+    if (story.hasReading) {
+      if (!html.includes('href="reading/"')) errors.push(`${story.path}: 占いの記録へのリンクがありません。`);
+      const reading = await readFile(path.join(ROOT, story.path, "reading", "index.html"), "utf8");
+      if (!reading.includes(`<h1>${story.title}</h1>`)) errors.push(`${story.path}reading/: 公開タイトルが一致しません。`);
+      if (!reading.includes('href="../"')) errors.push(`${story.path}reading/: 物語へ戻るリンクがありません。`);
+      for (const phrase of forbidden) if (reading.includes(phrase)) errors.push(`${story.path}reading/: 公開禁止文言「${phrase}」が含まれています。`);
+    }
   } catch (error) {
     errors.push(`${story.path}: ${error.message}`);
   }

@@ -119,3 +119,16 @@ test("URLの重複は全体停止", async () => {
   const broken = [published, { ...published, notionPageId: "dup", title: "別作品" }];
   await assert.rejects(run([page("a")], { currentStories: broken }), (e) => e.code === "PATH_COLLISION");
 });
+
+test("読み解きのある作品は記録ページも書き出し、一覧データに印を付ける", async () => {
+  const withReading = page("r", { title: "記録つき" });
+  Object.assign(withReading.properties, {
+    "相談文": { rich_text: rich("相談") },
+    "AI読解 過去": { rich_text: rich("過去") },
+    "AI読解 現在": { rich_text: rich("現在") },
+    "AI読解 未来": { rich_text: rich("未来") }
+  });
+  const result = await run([withReading]);
+  assert.ok(result.writes.has("stories/2026-10-24-2/reading/index.html"));
+  assert.equal(result.nextStories.find((s) => s.notionPageId === "r").hasReading, true);
+});

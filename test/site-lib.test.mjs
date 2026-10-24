@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { StoryValidationError, assignStoryPath, buildStoryFromPage, compareStories, extractStoryHtml, parseCard, renderStoryPage, storySequence } from "../scripts/site-lib.mjs";
+import { StoryValidationError, assignStoryPath, buildStoryFromPage, compareStories, extractStoryHtml, parseCard, renderReadingPage, renderStoryPage, storySequence } from "../scripts/site-lib.mjs";
 
 const rich = (content) => [{ plain_text: content, text: { content }, annotations: {} }];
 
@@ -88,4 +88,61 @@ test("一覧は公開日、同日内は公開順で並べる", () => {
 test("検証エラーには保留理由のコードが付く", () => {
   assert.throws(() => parseCard("過去", "不明なカード", "正位置"), (e) => e instanceof StoryValidationError && e.code === "INVALID_CARD");
   assert.throws(() => extractStoryHtml([]), (e) => e.code === "NO_STORY_BODY");
+});
+
+test("字数の注記は本文に含めない", () => {
+  const blocks = [
+    { type: "heading_2", heading_2: { rich_text: rich("短編小説") } },
+    { type: "paragraph", paragraph: { rich_text: rich("本文") } },
+    { type: "paragraph", paragraph: { rich_text: rich("(字数:1,492字/空白・改行を除く)") } },
+    { type: "paragraph", paragraph: { rich_text: rich("（字数:1,509字/空白・改行・題名を除く）") } }
+  ];
+  assert.equal(extractStoryHtml(blocks), "<p>本文</p>");
+});
+
+function readingPage(extra = {}) {
+  return {
+    id: "reading-id",
+    last_edited_time: "2026-10-24T00:00:00Z",
+    properties: {
+      "公開タイトル": { rich_text: rich("見送る手") },
+      "公開日": { date: { start: "2026-10-24" } },
+      "公開先": { select: { name: "月夜の短編集" } },
+      "過去カード": { rich_text: rich("皇帝(IV)") },
+      "過去正逆": { select: { name: "正位置" } },
+      "現在カード": { rich_text: rich("正義(XI)") },
+      "現在正逆": { select: { name: "逆位置" } },
+      "未来カード": { rich_text: rich("悪魔(XV)") },
+      "未来正逆": { select: { name: "逆位置" } },
+      "相談文": { rich_text: rich("定年を前に<迷って>います。") },
+      "AI読解 過去": { rich_text: rich("過去の読み\n二段落目") },
+      "AI読解 現在": { rich_text: rich("現在の読み") },
+      "AI読解 未来": { rich_text: rich("未来の読み") },
+      "AI読解 まとめ": { rich_text: rich("まとめの読み") },
+      "AI問いかけ": { rich_text: rich("鎖を外した後、何を選ぶのか。") },
+      ...extra
+    }
+  };
+}
+const storyBlocks = [
+  { type: "heading_2", heading_2: { rich_text: rich("短編小説") } },
+  { type: "paragraph", paragraph: { rich_text: rich("本文") } }
+];
+
+test("相談文と読み解きがあれば、占いの記録ページを作り本編からリンクする", () => {
+  const story = buildStoryFromPage(readingPage(), storyBlocks);
+  assert.match(renderStoryPage(story), /href="reading\/"/);
+  const html = renderReadingPage(story);
+  assert.match(html, /<h1>見送る手<\/h1>/);
+  assert.match(html, /定年を前に&lt;迷って&gt;います。/);
+  assert.match(html, /<p>過去の読み<\/p><p>二段落目<\/p>/);
+  assert.match(html, /<img class="reversed" src="..\/..\/..\/assets\/tarot\/11.svg"/);
+  assert.match(html, /鎖を外した後、何を選ぶのか。/);
+  assert.match(html, /href="..\/"/);
+});
+
+test("読み解きが欠けている作品には記録ページもリンクも作らない", () => {
+  const story = buildStoryFromPage(readingPage({ "AI読解 未来": { rich_text: [] } }), storyBlocks);
+  assert.equal(story.reading, null);
+  assert.doesNotMatch(renderStoryPage(story), /reading\//);
 });

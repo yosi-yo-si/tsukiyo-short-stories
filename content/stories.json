@@ -24,7 +24,8 @@
         "name": "世界",
         "orientation": "正位置"
       }
-    ]
+    ],
+    "hasReading": true
   },
   {
     "date": "2026-10-24",
@@ -52,7 +53,8 @@
         "name": "悪魔",
         "orientation": "逆位置"
       }
-    ]
+    ],
+    "hasReading": true
   },
   {
     "date": "2026-10-24",
@@ -80,7 +82,8 @@
         "name": "隠者",
         "orientation": "逆位置"
       }
-    ]
+    ],
+    "hasReading": true
   },
   {
     "date": "2026-10-25",
@@ -108,7 +111,8 @@
         "name": "皇帝",
         "orientation": "正位置"
       }
-    ]
+    ],
+    "hasReading": true
   },
   {
     "date": "2026-10-25",
@@ -136,6 +140,7 @@
         "name": "恋人",
         "orientation": "正位置"
       }
-    ]
+    ],
+    "hasReading": true
   }
 ]
