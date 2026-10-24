@@ -6,10 +6,52 @@
     "path": "stories/2026-10-23/",
     "notionPageId": "40212bbb-9587-8187-ba06-ec6e6f4158ac",
     "cards": [
-      { "position": "過去", "number": "08", "name": "力", "orientation": "正位置" },
-      { "position": "現在", "number": "12", "name": "吊るされた男", "orientation": "正位置" },
-      { "position": "未来", "number": "21", "name": "世界", "orientation": "正位置" }
+      {
+        "position": "過去",
+        "number": "08",
+        "name": "力",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "21",
+        "name": "世界",
+        "orientation": "正位置"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-24",
+    "title": "見送る手",
+    "category": "国際",
+    "path": "stories/2026-10-24/",
+    "notionPageId": "40312bbb-9587-8182-864c-ff2f2013fbed",
+    "notionLastEditedTime": "2026-10-24T10:01:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "11",
+        "name": "正義",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "15",
+        "name": "悪魔",
+        "orientation": "逆位置"
+      }
     ]
   }
 ]
-
