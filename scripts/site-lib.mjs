@@ -11,6 +11,15 @@ const ROMAN_TO_NUMBER = new Map([
   ["XVI", 16], ["XVII", 17], ["XVIII", 18], ["XIX", 19], ["XX", 20], ["XXI", 21]
 ]);
 
+// 作品単位の検証エラー。同期は該当作品だけを保留し、ほかの作品は続行する。
+export class StoryValidationError extends Error {
+  constructor(code, message) {
+    super(message);
+    this.name = "StoryValidationError";
+    this.code = code;
+  }
+}
+
 export function escapeHtml(value = "") {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -41,11 +50,11 @@ export function urlProperty(property) {
 export function parseCard(position, cardValue, orientation) {
   const raw = String(cardValue ?? "").trim();
   const match = raw.match(/^(.*?)\s*[（(]([IVXO0-9]+)[）)]/i);
-  if (!match) throw new Error(`${position}カード「${raw}」から番号を判定できません。`);
+  if (!match) throw new StoryValidationError("INVALID_CARD", `${position}カード「${raw}」から番号を判定できません。`);
   const key = match[2].toUpperCase();
   const number = /^\d+$/.test(key) ? Number(key) : ROMAN_TO_NUMBER.get(key);
   if (!Number.isInteger(number) || number < 0 || number > 21) {
-    throw new Error(`${position}カード「${raw}」の番号が大アルカナ0〜21の範囲外です。`);
+    throw new StoryValidationError("INVALID_CARD", `${position}カード「${raw}」の番号が大アルカナ0〜21の範囲外です。`);
   }
   return {
     position,
@@ -112,7 +121,7 @@ export function extractStoryHtml(blocks) {
     if (rendered) output.push(rendered);
   }
   closeList();
-  if (!insideStory || output.length === 0) throw new Error("Notion本文に「短編小説」見出しと公開可能な本文が必要です。");
+  if (!insideStory || output.length === 0) throw new StoryValidationError("NO_STORY_BODY", "Notion本文に「短編小説」見出しと公開可能な本文が必要です。");
   return output.join("");
 }
 
@@ -121,9 +130,9 @@ export function buildStoryFromPage(page, blocks) {
   const title = textProperty(props["公開タイトル"]);
   const date = dateProperty(props["公開日"]);
   const target = selectProperty(props["公開先"]);
-  if (!title) throw new Error(`${page.id}: 公開タイトルが空です。制作タイトルは代用しません。`);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error(`${title}: 公開日が必要です。`);
-  if (target !== "月夜の短編集") throw new Error(`${title}: 公開先が月夜の短編集ではありません。`);
+  if (!title) throw new StoryValidationError("EMPTY_TITLE", `${page.id}: 公開タイトルが空です。制作タイトルは代用しません。`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new StoryValidationError("INVALID_DATE", `${title}: 公開日が必要です。`);
+  if (target !== "月夜の短編集") throw new StoryValidationError("WRONG_TARGET", `${title}: 公開先が月夜の短編集ではありません。`);
 
   const cards = [
     parseCard("過去", textProperty(props["過去カード"]), selectProperty(props["過去正逆"])),
@@ -148,7 +157,7 @@ export function buildStoryFromPage(page, blocks) {
   };
 }
 
-// 同じ公開日の作品は stories/YYYY-MM-DD/、stories/YYYY-MM-DD-2/ … と連番にする。
+// 新しい作品の公開日に応じて stories/YYYY-MM-DD/、stories/YYYY-MM-DD-2/ … と連番にする。
 // 1作目のURLは従来どおりなので、既存の公開URLは変わらない。
 export function storySequence(storyPath = "") {
   const match = String(storyPath).match(/^stories\/\d{4}-\d{2}-\d{2}(?:-(\d+))?\/$/);
@@ -160,10 +169,12 @@ export function storyPathFor(date, sequence) {
 }
 
 export function assignStoryPath(stories, story) {
+  // 一度割り当てたURLは、公開日が変わっても固定する。
   const existing = stories.find((item) => item.notionPageId === story.notionPageId);
-  if (existing && existing.date === story.date) return existing.path;
+  if (existing?.path) return existing.path;
+  // 公開日を変えた作品も元のURLを持ち続けるので、日付に関係なく使用中のURLを避ける。
   const used = new Set(stories
-    .filter((item) => item.date === story.date && item.notionPageId !== story.notionPageId)
+    .filter((item) => item.notionPageId !== story.notionPageId)
     .map((item) => item.path));
   let sequence = 1;
   while (used.has(storyPathFor(story.date, sequence))) sequence += 1;

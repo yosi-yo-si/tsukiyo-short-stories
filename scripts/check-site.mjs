@@ -1,6 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { ROOT, compareStories, loadJson } from "./site-lib.mjs";
+import { markSiteCheckFailed } from "./sync-report.mjs";
 
 const stories = await loadJson("content/stories.json");
 const errors = [];
@@ -40,6 +41,8 @@ for (const story of recentStories) {
 
 if (errors.length) {
   console.error(errors.join("\n"));
+  // 同期直後の検証なら、同期レポートを全体停止に更新する（レポートがなければ何もしない）。
+  await markSiteCheckFailed(errors.join(" / "));
   process.exit(1);
 }
 console.log(`${stories.length}作品と一覧ページを検証しました。`);
