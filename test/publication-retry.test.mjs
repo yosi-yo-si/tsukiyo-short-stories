@@ -42,3 +42,18 @@ test('retry limit prevents an endless dispatch chain', async () => {
   await assert.rejects(mergeOrRetry({ ...args, github, retryCount: 2 }), /Main changed/);
   assert.deepEqual(calls, []);
 });
+
+test("keeps repo from an Actions-style context whose repo is a prototype getter", async () => {
+  class ActionsContext {
+    get repo() { return { owner: "owner", repo: "blog" }; }
+    get sha() { return "c".repeat(40); }
+  }
+  let seen;
+  const github = {
+    paginate: async () => [],
+    rest: { pulls: { get: async (args) => { seen = args; throw new Error("stop"); }, listFiles() {} } }
+  };
+  await assert.rejects(mergeOrRetry({ github, context: new ActionsContext(), number: 7, expectedSha: "a".repeat(40), mainSha: "b".repeat(40) }));
+  assert.equal(seen.owner, "owner");
+  assert.equal(seen.repo, "blog");
+});
