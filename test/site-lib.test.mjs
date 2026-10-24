@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildStoryFromPage, extractStoryHtml, parseCard, renderStoryPage } from "../scripts/site-lib.mjs";
+import { assignStoryPath, buildStoryFromPage, compareStories, extractStoryHtml, parseCard, renderStoryPage, storySequence } from "../scripts/site-lib.mjs";
 
 const rich = (content) => [{ plain_text: content, text: { content }, annotations: {} }];
 
@@ -59,3 +59,26 @@ test("公開タイトルだけを使用し、注意書きを末尾に置く", ()
   assert.ok(html.indexOf("この物語は実在人物") > html.indexOf("<h2>三枚のカード</h2>"));
 });
 
+
+test("同じ公開日の作品には連番URLを割り当て、既存URLは変えない", () => {
+  const stories = [
+    { date: "2026-10-24", title: "見送る手", path: "stories/2026-10-24/", notionPageId: "a" }
+  ];
+  assert.equal(assignStoryPath(stories, { date: "2026-10-24", notionPageId: "b" }), "stories/2026-10-24-2/");
+  assert.equal(assignStoryPath(stories, { date: "2026-10-24", notionPageId: "a" }), "stories/2026-10-24/");
+  assert.equal(assignStoryPath(stories, { date: "2026-10-25", notionPageId: "c" }), "stories/2026-10-25/");
+  const withSecond = [...stories, { date: "2026-10-24", path: "stories/2026-10-24-2/", notionPageId: "b" }];
+  assert.equal(assignStoryPath(withSecond, { date: "2026-10-24", notionPageId: "b" }), "stories/2026-10-24-2/");
+  assert.equal(assignStoryPath(withSecond, { date: "2026-10-24", notionPageId: "d" }), "stories/2026-10-24-3/");
+});
+
+test("一覧は公開日、同日内は公開順で並べる", () => {
+  const stories = [
+    { date: "2026-10-24", title: "あ", path: "stories/2026-10-24-2/" },
+    { date: "2026-10-25", title: "う", path: "stories/2026-10-25/" },
+    { date: "2026-10-24", title: "ん", path: "stories/2026-10-24/" }
+  ];
+  assert.deepEqual([...stories].sort(compareStories).map((s) => s.path),
+    ["stories/2026-10-24/", "stories/2026-10-24-2/", "stories/2026-10-25/"]);
+  assert.equal(storySequence("stories/2026-10-24-12/"), 12);
+});

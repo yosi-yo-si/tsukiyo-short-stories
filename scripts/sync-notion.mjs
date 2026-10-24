@@ -2,7 +2,9 @@ import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import {
   ROOT,
+  assignStoryPath,
   buildStoryFromPage,
+  compareStories,
   loadJson,
   renderIndexes,
   renderStoryPage,
@@ -77,8 +79,7 @@ for (const page of approvedPages) {
   if (selectProperty(page.properties?.["公開先"]) !== config.publishTarget) continue;
   const blocks = await fetchBlocks(page.id);
   const story = buildStoryFromPage(page, blocks);
-  const collision = nextStories.find((item) => item.date === story.date && item.notionPageId !== story.notionPageId);
-  if (collision) throw new Error(`${story.date} は「${collision.title}」ですでに使用されています。公開日を変更してください。`);
+  story.path = assignStoryPath(nextStories, story);
 
   await writeText(`${story.path}index.html`, renderStoryPage(story));
   const publicRecord = {
@@ -95,7 +96,7 @@ for (const page of approvedPages) {
   else nextStories.push(publicRecord);
 }
 
-nextStories.sort((a, b) => a.date.localeCompare(b.date) || a.title.localeCompare(b.title, "ja"));
+nextStories.sort(compareStories);
 await writeFile(path.join(ROOT, "content/stories.json"), `${JSON.stringify(nextStories, null, 2)}\n`, "utf8");
 const indexes = renderIndexes(nextStories);
 await writeText("index.html", indexes.index);

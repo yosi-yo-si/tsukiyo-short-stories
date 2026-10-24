@@ -1,12 +1,15 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
-import { ROOT, loadJson } from "./site-lib.mjs";
+import { ROOT, compareStories, loadJson } from "./site-lib.mjs";
 
 const stories = await loadJson("content/stories.json");
 const errors = [];
 const forbidden = ["ChatGPT版", "Notion制作ログでの原題", "書き方の判断", "原稿と制作記録はNotion"];
 
+const paths = new Set();
 for (const story of stories) {
+  if (paths.has(story.path)) errors.push(`${story.path}: 公開URLが重複しています。`);
+  paths.add(story.path);
   if (!story.title || !story.date || !story.path || !story.notionPageId) errors.push(`作品メタデータ不足: ${JSON.stringify(story)}`);
   const pagePath = path.join(ROOT, story.path, "index.html");
   try {
@@ -30,7 +33,7 @@ for (const page of ["archive-date.html", "archive-title.html"]) {
 }
 
 const indexHtml = await readFile(path.join(ROOT, "index.html"), "utf8");
-const recentStories = [...stories].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
+const recentStories = [...stories].sort((a, b) => compareStories(b, a)).slice(0, 5);
 for (const story of recentStories) {
   if (!indexHtml.includes(story.path) || !indexHtml.includes(story.title)) errors.push(`index.html: ${story.title}へのリンクがありません。`);
 }

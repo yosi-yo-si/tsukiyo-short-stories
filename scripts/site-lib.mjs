@@ -148,6 +148,33 @@ export function buildStoryFromPage(page, blocks) {
   };
 }
 
+// 同じ公開日の作品は stories/YYYY-MM-DD/、stories/YYYY-MM-DD-2/ … と連番にする。
+// 1作目のURLは従来どおりなので、既存の公開URLは変わらない。
+export function storySequence(storyPath = "") {
+  const match = String(storyPath).match(/^stories\/\d{4}-\d{2}-\d{2}(?:-(\d+))?\/$/);
+  return match?.[1] ? Number(match[1]) : 1;
+}
+
+export function storyPathFor(date, sequence) {
+  return sequence > 1 ? `stories/${date}-${sequence}/` : `stories/${date}/`;
+}
+
+export function assignStoryPath(stories, story) {
+  const existing = stories.find((item) => item.notionPageId === story.notionPageId);
+  if (existing && existing.date === story.date) return existing.path;
+  const used = new Set(stories
+    .filter((item) => item.date === story.date && item.notionPageId !== story.notionPageId)
+    .map((item) => item.path));
+  let sequence = 1;
+  while (used.has(storyPathFor(story.date, sequence))) sequence += 1;
+  return storyPathFor(story.date, sequence);
+}
+
+// 古い順（公開日→同日内の公開順）。新しい順はこの逆。
+export function compareStories(a, b) {
+  return a.date.localeCompare(b.date) || storySequence(a.path) - storySequence(b.path);
+}
+
 export function renderStoryPage(story) {
   const dateLabel = story.date.replaceAll("-", ".");
   const cards = story.cards.map((card) => {
@@ -170,7 +197,7 @@ function storyRow(story, titleMode = false) {
 }
 
 export function renderIndexes(stories) {
-  const newestFirst = [...stories].sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title, "ja"));
+  const newestFirst = [...stories].sort((a, b) => compareStories(b, a));
   const titleOrder = [...stories].sort((a, b) => a.title.localeCompare(b.title, "ja"));
   const latest = newestFirst[0];
   if (!latest) throw new Error("公開作品が1件もありません。");
