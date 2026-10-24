@@ -11,8 +11,8 @@
    - `公開日`：`YYYY-MM-DD`
    - `公開状態`：確認が終わるまでは`下書き`または`確認待ち`
 3. 最終確認後、`公開状態`を`公開承認`にする。
-4. GitHub Actionsが毎時17分に承認済み作品だけを取得し、作品ページと一覧を生成してPRを作る。
-5. PRの差分を確認してマージすると、既存のCloudflare Pagesプロジェクトへ自動配信する。
+4. GitHub Actionsが毎時17分に承認済み作品だけを取得し、作品ページと一覧を生成・検証してPRを作る。
+5. 専用ブランチの自動生成PRについて、記事・一覧ファイルだけの変更であることと検証済みコミットを確認し、自動マージしてCloudflare Pagesへの配信を明示的に起動する。コード・設定の変更を含むPRは自動マージしない。
 6. 配信成功後、Notionの`公開状態`を`公開済み`へ変更し、`公開URL`を記録する。
 
 制作タイトルの`題名`、Notionのデータベース名、内部メモは公開判定にも公開HTMLにも使いません。`公開タイトル`が空の場合は処理を失敗させ、制作タイトルを代用しない設計です。同じ公開日に複数作品がある場合も上書きせず停止します。
@@ -25,7 +25,7 @@ GitHubリポジトリのActions secretsに次を登録します。
 - `CLOUDFLARE_ACCOUNT_ID`：CloudflareアカウントID
 - `CLOUDFLARE_API_TOKEN`：対象Pagesプロジェクトを編集できる最小権限のAPIトークン
 
-GitHub ActionsのWorkflow permissionsは`Read and write permissions`を選び、`Allow GitHub Actions to create and approve pull requests`を有効にします。公開の承認点はPRのマージです。
+GitHub ActionsのWorkflow permissionsは`Read and write permissions`を選び、`Allow GitHub Actions to create and approve pull requests`を有効にします。公開の承認点はNotionの`公開承認`です。リポジトリ全体のAllow auto-merge設定は不要です。同期ジョブ内で検証に成功した記事PRだけをマージし、GITHUB_TOKENによるマージではpushワークフローが起動しないため、公開ワークフローをworkflow_dispatchで起動します。公開処理はマージされたコミットSHAを指定して実行します。
 
 ## ローカル検証
 
@@ -49,4 +49,3 @@ NOTION_TOKEN=... npm run sync:notion
 - 既存タロットアプリのリポジトリや公開環境には変更を加えない
 - 自動処理はNode.js標準機能だけを使用（追加パッケージなし）
 - Cloudflare Pagesへの配信はGitHub ActionsとWranglerを使用
-
