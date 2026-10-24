@@ -1,3 +1,5 @@
+import { isEmailRelay, validateEmailRelay, sendEmailAlert } from './email-relay.mjs';
+
 const SYNC = 'sync-notion.yml';
 const DEPLOY = 'deploy-cloudflare.yml';
 const ACTIVE = new Set(['queued', 'in_progress', 'waiting', 'pending', 'requested']);
@@ -26,15 +28,25 @@ export async function setIncident(env, key, text, active = true) {
   const existing = await env.STATE.get(storageKey);
   if (!active) {
     if (existing) await env.STATE.delete(storageKey);
+    if (await env.STATE.get(`delivery:${key}`)) await env.STATE.delete(`delivery:${key}`);
     return;
   }
   if (existing) return;
   if (!env.ALERT_WEBHOOK_URL) throw new Error('ALERT_WEBHOOK_URL is not configured');
-  const response = await fetch(env.ALERT_WEBHOOK_URL, {
-    method: 'POST', signal: AbortSignal.timeout(20000),
-    headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text })
-  });
-  if (!response.ok) throw new Error(`Alert delivery HTTP ${response.status}`);
+  if (env.ALERT_WEBHOOK_TOKEN || isEmailRelay(env.ALERT_WEBHOOK_URL)) {
+    let id = await env.STATE.get(`delivery:${key}`);
+    if (!id) {
+      id = crypto.randomUUID();
+      await env.STATE.put(`delivery:${key}`, id);
+    }
+    await sendEmailAlert(env, { id, text });
+  } else {
+    const response = await fetch(env.ALERT_WEBHOOK_URL, {
+      method: 'POST', signal: AbortSignal.timeout(20000),
+      headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text })
+    });
+    if (!response.ok) throw new Error(`Alert delivery HTTP ${response.status}`);
+  }
   // Only suppress an alert after delivery succeeds. No automatic expiry for unresolved holds.
   await env.STATE.put(storageKey, 'active');
 }
@@ -101,6 +113,7 @@ export async function tick(env, { now = Date.now(), api = githubRequest, approve
   if (!env.STATE || !env.GITHUB_TOKEN || !env.NOTION_TOKEN || !env.MONITOR_TOKEN || !env.ALERT_WEBHOOK_URL) {
     throw new Error('Monitor secrets or STATE binding are missing');
   }
+  if (env.ALERT_WEBHOOK_TOKEN || isEmailRelay(env.ALERT_WEBHOOK_URL)) validateEmailRelay(env);
   let startedAt = Number(await env.STATE.get('started-at') || 0);
   if (!startedAt) {
     startedAt = now;
