@@ -1,5 +1,7 @@
 # 同期の外部起動と監視
 
+メール通知を使う場合は、[メール通知と初回セットアップ](email-monitor-setup.md)を使用する。GitHub ActionsからKV作成・Worker公開・secret登録まで行い、Mac側のNode.jsは不要。以下は従来の手動設定／汎用Webhook向けの説明。
+
 このPRのマージだけではWorker・通知は有効になりません。次の設定と手動検証を完了してから運用を開始してください。既存のGitHub定期実行は4時間おきの保険として残ります。
 
 ## Workerの設定

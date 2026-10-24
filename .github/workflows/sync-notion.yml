@@ -105,7 +105,7 @@ jobs:
       - name: Report synchronization outcome
         if: always()
         env:
-          SYNC_MONITOR_URL: ${{ secrets.SYNC_MONITOR_URL }}
+          SYNC_MONITOR_URL: ${{ secrets.SYNC_MONITOR_URL || vars.SYNC_MONITOR_URL }}
           SYNC_MONITOR_TOKEN: ${{ secrets.SYNC_MONITOR_TOKEN }}
           JOB_RESULT: ${{ job.status }}
           SYNC_OUTCOME: ${{ steps.merge.outputs.outcome || 'complete' }}

@@ -7,3 +7,5 @@ sync-report.json
 .dev.vars*
 
 .env*
+worker/wrangler.deploy.json
+monitor-secrets.json

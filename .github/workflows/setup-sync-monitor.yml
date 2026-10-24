@@ -1,0 +1,47 @@
+name: Setup or update sync monitor
+
+on:
+  workflow_dispatch:
+    inputs:
+      send_test_email:
+        description: Send a connection test to the configured email recipient
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-monitor-setup
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      SYNC_DISPATCH_TOKEN: ${{ secrets.SYNC_DISPATCH_TOKEN }}
+      SYNC_MONITOR_TOKEN: ${{ secrets.SYNC_MONITOR_TOKEN }}
+      SYNC_MONITOR_URL: ${{ secrets.SYNC_MONITOR_URL || vars.SYNC_MONITOR_URL }}
+      ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+      ALERT_WEBHOOK_TOKEN: ${{ secrets.ALERT_WEBHOOK_TOKEN }}
+      SEND_TEST_EMAIL: ${{ inputs.send_test_email }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify implementation
+        run: npm test
+      - name: Validate email and prepare deployment
+        run: node scripts/setup-sync-monitor.mjs
+      - name: Deploy Worker with secrets and STATE binding
+        run: npx --yes wrangler@4 deploy --config worker/wrangler.deploy.json --secrets-file "$RUNNER_TEMP/monitor-secrets.json"
+      - name: Remove temporary credentials
+        if: always()
+        run: rm -f "$RUNNER_TEMP/monitor-secrets.json" worker/wrangler.deploy.json
