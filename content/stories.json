@@ -142,5 +142,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-25",
+    "title": "二つの瓶",
+    "category": "科学",
+    "path": "stories/2026-10-25-3/",
+    "notionPageId": "40312bbb-9587-818f-bc30-f0241ba072db",
+    "notionLastEditedTime": "2026-10-25T02:16:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "07",
+        "name": "戦車",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "14",
+        "name": "節制",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
