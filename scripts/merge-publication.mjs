@@ -11,7 +11,7 @@ export function validatePublication(pr, files, { repository, expectedSha }) {
   }
   if (!files.length || files.length !== pr.changed_files || files.some(file =>
     !["added", "modified"].includes(file.status)
-    || !(indexes.has(file.filename) || /^stories\/\d{4}-\d{2}-\d{2}(?:-[1-9]\d*)?\/index\.html$/.test(file.filename))
+    || !(indexes.has(file.filename) || /^stories\/\d{4}-\d{2}-\d{2}(?:-[1-9]\d*)?\/(?:reading\/)?index\.html$/.test(file.filename))
   )) throw new Error("Publication contains unexpected file changes");
 }
 
