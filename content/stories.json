@@ -171,5 +171,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-25",
+    "title": "待ったなし",
+    "category": "国際",
+    "path": "stories/2026-10-25-4/",
+    "notionPageId": "40412bbb-9587-8150-8d51-eaad8078011c",
+    "notionLastEditedTime": "2026-10-25T04:37:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "07",
+        "name": "戦車",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "18",
+        "name": "月",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "10",
+        "name": "運命の輪",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
