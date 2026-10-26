@@ -129,7 +129,7 @@ const storyBlocks = [
   { type: "paragraph", paragraph: { rich_text: rich("本文") } }
 ];
 
-test("相談文と読み解きがあれば、占いの記録ページを作り本編からリンクする", () => {
+test("相談文と読み解きがあれば、相談録ページを作り本編からリンクする", () => {
   const story = buildStoryFromPage(readingPage(), storyBlocks);
   assert.match(renderStoryPage(story), /href="reading\/"/);
   const html = renderReadingPage(story);
