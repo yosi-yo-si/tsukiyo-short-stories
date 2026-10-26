@@ -229,5 +229,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-26",
+    "title": "投了の手",
+    "category": "文化",
+    "path": "stories/2026-10-26/",
+    "notionPageId": "40512bbb-9587-8136-a4b6-c1e1e55e9679",
+    "notionLastEditedTime": "2026-10-26T07:24:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "20",
+        "name": "審判",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "10",
+        "name": "運命の輪",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "11",
+        "name": "正義",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-10-26",
+    "title": "値札の裏",
+    "category": "政治",
+    "path": "stories/2026-10-26-2/",
+    "notionPageId": "40412bbb-9587-8153-b5b1-da42d870d221",
+    "notionLastEditedTime": "2026-10-26T07:24:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "18",
+        "name": "月",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "09",
+        "name": "隠者",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
