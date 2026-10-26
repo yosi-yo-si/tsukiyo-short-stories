@@ -287,5 +287,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-26",
+    "title": "折り返し場",
+    "category": "社会",
+    "path": "stories/2026-10-26-3/",
+    "notionPageId": "40512bbb-9587-8131-ab24-e6d1b45c9a93",
+    "notionLastEditedTime": "2026-10-26T14:17:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "14",
+        "name": "節制",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "09",
+        "name": "隠者",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
