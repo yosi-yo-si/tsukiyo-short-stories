@@ -316,5 +316,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-27",
+    "title": "配信停止",
+    "category": "科学",
+    "path": "stories/2026-10-27/",
+    "notionPageId": "40512bbb-9587-8101-a5eb-c17aef677047",
+    "notionLastEditedTime": "2026-10-26T20:18:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "18",
+        "name": "月",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
