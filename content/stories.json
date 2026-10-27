@@ -374,5 +374,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-27",
+    "title": "包み紙",
+    "category": "文化",
+    "path": "stories/2026-10-27-3/",
+    "notionPageId": "40612bbb-9587-81c4-9963-e10130ab1418",
+    "notionLastEditedTime": "2026-10-27T11:10:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "18",
+        "name": "月",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "17",
+        "name": "星",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "01",
+        "name": "魔術師",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-10-27",
+    "title": "昼の泣き声",
+    "category": "社会",
+    "path": "stories/2026-10-27-4/",
+    "notionPageId": "40612bbb-9587-812a-b7a0-eadb1dc45de9",
+    "notionLastEditedTime": "2026-10-27T11:10:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "01",
+        "name": "魔術師",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
