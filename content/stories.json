@@ -432,5 +432,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-28",
+    "title": "四枚の田",
+    "category": "経済",
+    "path": "stories/2026-10-28/",
+    "notionPageId": "40612bbb-9587-818b-a92e-da1ee936dcea",
+    "notionLastEditedTime": "2026-10-28T08:51:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "01",
+        "name": "魔術師",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
