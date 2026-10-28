@@ -490,5 +490,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-28",
+    "title": "八メートル",
+    "category": "科学",
+    "path": "stories/2026-10-28-3/",
+    "notionPageId": "40712bbb-9587-8134-a817-d6d0760160be",
+    "notionLastEditedTime": "2026-10-28T14:34:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "14",
+        "name": "節制",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "08",
+        "name": "力",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
