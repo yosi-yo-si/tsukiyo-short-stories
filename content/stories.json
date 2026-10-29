@@ -519,5 +519,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-29",
+    "title": "同じ寒さ",
+    "category": "国際",
+    "path": "stories/2026-10-29/",
+    "notionPageId": "40812bbb-9587-81ce-83ca-fe0dec976f2c",
+    "notionLastEditedTime": "2026-10-29T11:05:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "11",
+        "name": "正義",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "16",
+        "name": "塔",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-10-29",
+    "title": "宣言残留",
+    "category": "その他",
+    "path": "stories/2026-10-29-2/",
+    "notionPageId": "40712bbb-9587-8138-9808-f16981f20cfb",
+    "notionLastEditedTime": "2026-10-29T11:04:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "20",
+        "name": "審判",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "18",
+        "name": "月",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "17",
+        "name": "星",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
