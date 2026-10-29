@@ -577,5 +577,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-29",
+    "title": "火曜の束",
+    "category": "文化",
+    "path": "stories/2026-10-29-3/",
+    "notionPageId": "40812bbb-9587-81ac-a300-e5abd6479c8c",
+    "notionLastEditedTime": "2026-10-29T14:39:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "20",
+        "name": "審判",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
