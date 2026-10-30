@@ -606,5 +606,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-30",
+    "title": "落款",
+    "category": "科学",
+    "path": "stories/2026-10-30/",
+    "notionPageId": "40912bbb-9587-8199-8fe8-e9cb96e9b44a",
+    "notionLastEditedTime": "2026-10-30T09:17:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "17",
+        "name": "星",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "20",
+        "name": "審判",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-10-30",
+    "title": "地上の目",
+    "category": "地域",
+    "path": "stories/2026-10-30-2/",
+    "notionPageId": "40812bbb-9587-8185-8247-db606a598efa",
+    "notionLastEditedTime": "2026-10-30T09:17:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "20",
+        "name": "審判",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
