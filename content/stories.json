@@ -722,5 +722,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-01",
+    "title": "三千字",
+    "category": "文化",
+    "path": "stories/2026-11-01/",
+    "notionPageId": "40a12bbb-9587-81f4-960b-c8fdc640da17",
+    "notionLastEditedTime": "2026-10-31T16:17:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "13",
+        "name": "死神",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "07",
+        "name": "戦車",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-01",
+    "title": "割り方",
+    "category": "地域",
+    "path": "stories/2026-11-01-2/",
+    "notionPageId": "40a12bbb-9587-8115-8303-da0ef4f91c74",
+    "notionLastEditedTime": "2026-10-31T16:17:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "21",
+        "name": "世界",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "14",
+        "name": "節制",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
