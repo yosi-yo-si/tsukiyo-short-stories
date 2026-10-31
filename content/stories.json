@@ -664,5 +664,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-10-31",
+    "title": "低い声",
+    "category": "国際",
+    "path": "stories/2026-10-31/",
+    "notionPageId": "40912bbb-9587-811c-9684-f85d2d0be1ec",
+    "notionLastEditedTime": "2026-10-31T07:35:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "18",
+        "name": "月",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-10-31",
+    "title": "削りしろ",
+    "category": "経済",
+    "path": "stories/2026-10-31-2/",
+    "notionPageId": "40912bbb-9587-817a-9569-d16035d86ef3",
+    "notionLastEditedTime": "2026-10-31T07:35:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "11",
+        "name": "正義",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "10",
+        "name": "運命の輪",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
