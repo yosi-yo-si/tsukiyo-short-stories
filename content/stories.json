@@ -838,5 +838,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-01",
+    "title": "二行目",
+    "category": "政治",
+    "path": "stories/2026-11-01-5/",
+    "notionPageId": "40b12bbb-9587-8184-88e9-f9876fb3dd12",
+    "notionLastEditedTime": "2026-11-01T10:53:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "21",
+        "name": "世界",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "01",
+        "name": "魔術師",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
