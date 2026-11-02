@@ -867,5 +867,92 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-02",
+    "title": "預かり",
+    "category": "地域",
+    "path": "stories/2026-11-02/",
+    "notionPageId": "40c12bbb-9587-8155-a622-c5ba6490b9b2",
+    "notionLastEditedTime": "2026-11-02T13:09:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "10",
+        "name": "運命の輪",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-02",
+    "title": "裏板",
+    "category": "社会",
+    "path": "stories/2026-11-02-2/",
+    "notionPageId": "40c12bbb-9587-81ca-aca2-c5dcd2dcfb2e",
+    "notionLastEditedTime": "2026-11-02T13:09:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "17",
+        "name": "星",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "14",
+        "name": "節制",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-02",
+    "title": "仕付け糸",
+    "category": "文化",
+    "path": "stories/2026-11-02-3/",
+    "notionPageId": "40b12bbb-9587-81c5-892b-fadda9f5ac0c",
+    "notionLastEditedTime": "2026-11-02T13:09:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "10",
+        "name": "運命の輪",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
