@@ -1012,5 +1012,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-03",
+    "title": "開口",
+    "category": "地域",
+    "path": "stories/2026-11-03-3/",
+    "notionPageId": "40d12bbb-9587-810c-91e7-e2b95faa06fa",
+    "notionLastEditedTime": "2026-11-03T11:11:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "07",
+        "name": "戦車",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "01",
+        "name": "魔術師",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
