@@ -954,5 +954,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-03",
+    "title": "はねもの",
+    "category": "経済",
+    "path": "stories/2026-11-03/",
+    "notionPageId": "40d12bbb-9587-81a2-bf7f-f300188da1b4",
+    "notionLastEditedTime": "2026-11-03T05:24:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "01",
+        "name": "魔術師",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-03",
+    "title": "逐語",
+    "category": "国際",
+    "path": "stories/2026-11-03-2/",
+    "notionPageId": "40c12bbb-9587-81ae-a4ad-e8d34d2eb316",
+    "notionLastEditedTime": "2026-11-03T05:24:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "18",
+        "name": "月",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "14",
+        "name": "節制",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
