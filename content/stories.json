@@ -1128,5 +1128,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-05",
+    "title": "裏返し",
+    "category": "経済",
+    "path": "stories/2026-11-05/",
+    "notionPageId": "40f12bbb-9587-8124-9795-c9c1e7d853df",
+    "notionLastEditedTime": "2026-11-05T05:04:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "13",
+        "name": "死神",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "15",
+        "name": "悪魔",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-05",
+    "title": "定数",
+    "category": "地域",
+    "path": "stories/2026-11-05-2/",
+    "notionPageId": "40e12bbb-9587-8194-9820-ee7dd3bb5b8e",
+    "notionLastEditedTime": "2026-11-05T05:04:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "08",
+        "name": "力",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
