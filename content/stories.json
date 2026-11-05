@@ -1186,5 +1186,34 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-06",
+    "title": "疑問出し",
+    "category": "文化",
+    "path": "stories/2026-11-06/",
+    "notionPageId": "40f12bbb-9587-812e-a73f-c0ded62a2675",
+    "notionLastEditedTime": "2026-11-05T17:13:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "18",
+        "name": "月",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
