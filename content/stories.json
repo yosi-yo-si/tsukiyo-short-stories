@@ -1215,5 +1215,92 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-06",
+    "title": "平癒",
+    "category": "地域",
+    "path": "stories/2026-11-06-2/",
+    "notionPageId": "41012bbb-9587-81bb-8095-eaa2c6a083f9",
+    "notionLastEditedTime": "2026-11-06T14:27:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "11",
+        "name": "正義",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "16",
+        "name": "塔",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-06",
+    "title": "補助",
+    "category": "経済",
+    "path": "stories/2026-11-06-3/",
+    "notionPageId": "41012bbb-9587-8163-a840-e259acf93ba5",
+    "notionLastEditedTime": "2026-11-06T14:27:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "17",
+        "name": "星",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "07",
+        "name": "戦車",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-06",
+    "title": "お変わりなく",
+    "category": "社会",
+    "path": "stories/2026-11-06-4/",
+    "notionPageId": "40f12bbb-9587-810f-8419-deb785f7828f",
+    "notionLastEditedTime": "2026-11-06T14:27:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "14",
+        "name": "節制",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "20",
+        "name": "審判",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
