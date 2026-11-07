@@ -1302,5 +1302,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-07",
+    "title": "化粧土",
+    "category": "地域",
+    "path": "stories/2026-11-07/",
+    "notionPageId": "41112bbb-9587-8158-a2a1-c40ac83881ad",
+    "notionLastEditedTime": "2026-11-07T06:53:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-07",
+    "title": "留め金",
+    "category": "文化",
+    "path": "stories/2026-11-07-2/",
+    "notionPageId": "41012bbb-9587-810c-b15e-eeba9d13a7fa",
+    "notionLastEditedTime": "2026-11-07T06:53:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "14",
+        "name": "節制",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "18",
+        "name": "月",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "15",
+        "name": "悪魔",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
