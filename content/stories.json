@@ -1360,5 +1360,121 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-09",
+    "title": "手元灯",
+    "category": "経済",
+    "path": "stories/2026-11-09/",
+    "notionPageId": "41212bbb-9587-8187-832e-ec0bcd0293ee",
+    "notionLastEditedTime": "2026-11-08T19:42:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "09",
+        "name": "隠者",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "16",
+        "name": "塔",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-09",
+    "title": "位置",
+    "category": "国際",
+    "path": "stories/2026-11-09-2/",
+    "notionPageId": "41212bbb-9587-81d0-92cb-dfa731cb4afe",
+    "notionLastEditedTime": "2026-11-08T19:42:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "15",
+        "name": "悪魔",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "16",
+        "name": "塔",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-09",
+    "title": "枕元",
+    "category": "社会",
+    "path": "stories/2026-11-09-3/",
+    "notionPageId": "41112bbb-9587-815a-9d5a-d593ea297f0f",
+    "notionLastEditedTime": "2026-11-08T19:42:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "13",
+        "name": "死神",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "08",
+        "name": "力",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "21",
+        "name": "世界",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-09",
+    "title": "湿球",
+    "category": "科学",
+    "path": "stories/2026-11-09-4/",
+    "notionPageId": "41112bbb-9587-812e-b609-da6704790dba",
+    "notionLastEditedTime": "2026-11-08T19:42:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "20",
+        "name": "審判",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "17",
+        "name": "星",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
