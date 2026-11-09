@@ -1476,5 +1476,92 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-09",
+    "title": "打ち直し",
+    "category": "文化",
+    "path": "stories/2026-11-09-5/",
+    "notionPageId": "41312bbb-9587-81d1-95c1-ff9455bc0735",
+    "notionLastEditedTime": "2026-11-09T14:11:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "08",
+        "name": "力",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "04",
+        "name": "皇帝",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-09",
+    "title": "七時十四分",
+    "category": "地域",
+    "path": "stories/2026-11-09-6/",
+    "notionPageId": "41312bbb-9587-815a-b404-e5193209878b",
+    "notionLastEditedTime": "2026-11-09T14:11:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-09",
+    "title": "点検票",
+    "category": "社会",
+    "path": "stories/2026-11-09-7/",
+    "notionPageId": "41212bbb-9587-81d7-99df-dd0cf5011a49",
+    "notionLastEditedTime": "2026-11-09T14:11:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "16",
+        "name": "塔",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "20",
+        "name": "審判",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
