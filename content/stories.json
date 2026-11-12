@@ -1708,5 +1708,92 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-12",
+    "title": "宿札",
+    "category": "国際",
+    "path": "stories/2026-11-12/",
+    "notionPageId": "41612bbb-9587-814b-b568-f3dc23b1d7e1",
+    "notionLastEditedTime": "2026-11-12T04:10:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "08",
+        "name": "力",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-12",
+    "title": "四十七",
+    "category": "社会",
+    "path": "stories/2026-11-12-2/",
+    "notionPageId": "41512bbb-9587-8128-b423-e3164d598aae",
+    "notionLastEditedTime": "2026-11-12T04:10:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "07",
+        "name": "戦車",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-12",
+    "title": "二十度",
+    "category": "科学",
+    "path": "stories/2026-11-12-3/",
+    "notionPageId": "41512bbb-9587-81c3-972c-d77643a469d0",
+    "notionLastEditedTime": "2026-11-12T04:09:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "19",
+        "name": "太陽",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "20",
+        "name": "審判",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
