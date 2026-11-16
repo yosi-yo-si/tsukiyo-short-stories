@@ -1,4 +1,4 @@
-const indexes = new Set(["index.html", "archive-date.html", "archive-title.html", "content/stories.json"]);
+const indexes = new Set(["index.html", "archive-date.html", "archive-cards.html", "content/stories.json"]);
 
 export function validatePublication(pr, files, { repository, expectedSha }) {
   if (!/^[a-f0-9]{40}$/.test(expectedSha ?? "")) throw new Error("Missing verified publication SHA");

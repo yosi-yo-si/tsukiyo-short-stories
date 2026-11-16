@@ -132,3 +132,12 @@ test("読み解きのある作品は記録ページも書き出し、一覧デ�
   assert.ok(result.writes.has("stories/2026-10-24-2/reading/index.html"));
   assert.equal(result.nextStories.find((s) => s.notionPageId === "r").hasReading, true);
 });
+
+test('新作の同期でカード別一覧も更新される', async () => {
+  const result = await run([page('new', { title: 'カードから見つける新作' })]);
+  const html = result.writes.get('archive-cards.html');
+  assert.ok(html);
+  const strength = html.split('id="major-08"')[1].split('</section>')[0];
+  assert.match(strength, /カードから見つける新作/);
+  assert.match(strength, /2作品/);
+});

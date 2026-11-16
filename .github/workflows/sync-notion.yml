@@ -56,7 +56,7 @@ jobs:
             stories/**/index.html
             index.html
             archive-date.html
-            archive-title.html
+            archive-cards.html
           branch: automation/notion-publish
           delete-branch: true
           commit-message: "Publish approved Notion stories"

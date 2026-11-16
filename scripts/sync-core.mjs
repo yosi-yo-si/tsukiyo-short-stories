@@ -113,7 +113,7 @@ export async function prepareSync({ approvedPages, fetchBlocks, currentStories, 
     writes.set("content/stories.json", `${JSON.stringify(nextStories, null, 2)}\n`);
     writes.set("index.html", indexes.index);
     writes.set("archive-date.html", indexes.byDate);
-    writes.set("archive-title.html", indexes.byTitle);
+    writes.set("archive-cards.html", indexes.byCards);
   }
 
   const status = prepared.length > 0 ? "prepared" : held.length > 0 ? "held_only" : "nothing";

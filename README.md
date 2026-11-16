@@ -70,3 +70,9 @@ NOTION_TOKEN=... npm run sync:notion
 - 自動処理はNode.js標準機能だけを使用（追加パッケージなし）
 - Cloudflare Pagesへの配信はGitHub ActionsとWranglerを使用
 
+
+## カード別一覧とおすすめ
+
+作品データのカード番号を使って、配置と正逆に関係なく登場作品数を作品単位で集計します。カード一覧は同期時に他の一覧とともに生成されます。集計処理は `scripts/card-index.mjs` に分離しています。将来、小アルカナを追加する際は、スートを含む一意な `id` と必要に応じて `image` を作品データに持たせるほか、Notion取込・画像・作品ページ側の対応が必要です。現状の取込対象と画像は大アルカナ22枚です。
+
+おすすめを掲載する場合は `scripts/recommendations.mjs` の配列に、既存作品の `path` を表示順に3〜5件指定し、一覧を再生成してください。空配列の間はおすすめ欄を表示しません。`npm run indexes` で各一覧を更新し、`npm test` と `npm run check` を実行してください。
