@@ -2056,5 +2056,121 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-16",
+    "title": "てんでんこ",
+    "category": "科学",
+    "path": "stories/2026-11-16/",
+    "notionPageId": "41a12bbb-9587-810d-a501-c93ff2a36484",
+    "notionLastEditedTime": "2026-11-16T11:04:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "15",
+        "name": "悪魔",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "08",
+        "name": "力",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-16",
+    "title": "地の色",
+    "category": "文化",
+    "path": "stories/2026-11-16-2/",
+    "notionPageId": "41a12bbb-9587-812f-9e06-d56482487ee6",
+    "notionLastEditedTime": "2026-11-16T11:04:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "17",
+        "name": "星",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "13",
+        "name": "死神",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-16",
+    "title": "三棟先",
+    "category": "経済",
+    "path": "stories/2026-11-16-3/",
+    "notionPageId": "41912bbb-9587-8160-8fd3-e0b97f8c816f",
+    "notionLastEditedTime": "2026-11-16T11:04:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "20",
+        "name": "審判",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "08",
+        "name": "力",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-16",
+    "title": "帰還",
+    "category": "科学",
+    "path": "stories/2026-11-16-4/",
+    "notionPageId": "41912bbb-9587-8171-a6b2-e77a67b7fbfd",
+    "notionLastEditedTime": "2026-11-16T11:04:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "20",
+        "name": "審判",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "21",
+        "name": "世界",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
