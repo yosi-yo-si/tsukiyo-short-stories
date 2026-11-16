@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build-site.mjs",
+    "indexes": "node scripts/generate-indexes.mjs",
     "check": "node scripts/check-site.mjs",
     "sync:notion": "node scripts/sync-notion.mjs",
     "mark:published": "node scripts/mark-published.mjs",

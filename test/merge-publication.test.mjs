@@ -15,7 +15,7 @@ const files = [{ filename: "stories/2026-10-24/index.html", status: "added" }];
 const options = { repository: "owner/blog", expectedSha: sha };
 
 test("accepts generated article and index updates", () => {
-  for (const filename of ["stories/2026-10-24/index.html", "stories/2026-10-24-2/index.html", "stories/2026-10-24/reading/index.html", "stories/2026-10-25-3/reading/index.html", "content/stories.json", "index.html", "archive-title.html", "archive-date.html"]) {
+  for (const filename of ["stories/2026-10-24/index.html", "stories/2026-10-24-2/index.html", "stories/2026-10-24/reading/index.html", "stories/2026-10-25-3/reading/index.html", "content/stories.json", "index.html", "archive-cards.html", "archive-date.html"]) {
     validatePublication(fixture(), [{ filename, status: "modified" }], options);
   }
 });

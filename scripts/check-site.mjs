@@ -1,6 +1,6 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
-import { ROOT, compareStories, loadJson } from "./site-lib.mjs";
+import { ROOT, compareStories, loadJson, renderIndexes } from "./site-lib.mjs";
 import { markSiteCheckFailed } from "./sync-report.mjs";
 
 const stories = await loadJson("content/stories.json");
@@ -33,11 +33,16 @@ for (const story of stories) {
   }
 }
 
-for (const page of ["archive-date.html", "archive-title.html"]) {
+for (const page of ["archive-date.html", "archive-cards.html"]) {
   const html = await readFile(path.join(ROOT, page), "utf8");
   for (const story of stories) {
     if (!html.includes(story.path) || !html.includes(story.title)) errors.push(`${page}: ${story.title}へのリンクがありません。`);
   }
+}
+
+const generated = renderIndexes(stories);
+for (const [page, expected] of [["index.html", generated.index], ["archive-date.html", generated.byDate], ["archive-cards.html", generated.byCards]]) {
+  if (await readFile(path.join(ROOT, page), "utf8") !== expected) errors.push(`${page}: 一覧が最新の作品データと一致しません。npm run indexes を実行してください。`);
 }
 
 const indexHtml = await readFile(path.join(ROOT, "index.html"), "utf8");

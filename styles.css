@@ -1,6 +1,6 @@
 :root{--ink:#ece5d2;--muted:#a9a18f;--night:#0d0c1d;--panel:#17152d;--line:#3b3657;--gold:#d9b86a;--vermilion:#b9493d;--paper:#f6f1e6;color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{margin:0;background:var(--night);color:var(--ink);font-family:"Hiragino Mincho ProN","Yu Mincho",serif;line-height:2;letter-spacing:.025em}
 a{color:inherit;text-decoration-color:var(--gold);text-underline-offset:.25em}
 img{max-width:100%;display:block}
@@ -100,3 +100,32 @@ img{max-width:100%;display:block}
 @media(max-width:760px){.reading-card{grid-template-columns:76px 1fr;gap:18px;padding:22px 0}
 .reading-question{font-size:1.12rem}
 .consultation{padding:18px 18px}}
+
+/* カードを入口にする書庫 */
+.archive-links{display:flex;flex-wrap:wrap;gap:18px 36px;margin-top:28px;font-family:system-ui,sans-serif;font-size:.9rem}
+.archive-links a,.back-to-cards{text-decoration:none;border-bottom:1px solid var(--line);padding:8px 0}
+.archive-links span{color:var(--gold)}
+.card-archive{padding-bottom:90px}
+.card-archive .archive-head h1{font-size:clamp(2rem,5vw,4rem)}
+.card-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:32px 22px}
+.card-choice{min-width:0;text-decoration:none;text-align:center;line-height:1.5}
+.card-choice img,.card-image-placeholder{width:100%;height:auto;aspect-ratio:10/17;object-fit:contain;margin-bottom:12px}
+.card-image-placeholder{display:block;border:1px solid var(--line);background:var(--panel)}
+.card-choice span:not(.card-image-placeholder){display:block;font-size:.95rem}
+.card-choice small{display:block;margin-top:4px;color:var(--muted);font-family:system-ui,sans-serif;font-size:.76rem}
+.card-choice:hover img{outline:1px solid var(--gold);outline-offset:4px}
+.card-choice:focus-visible,.card-story:focus-visible,.back-to-cards:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.card-results{display:none;scroll-margin-top:24px;padding-top:72px}
+.card-results:target{display:block}
+.card-results h2{font-weight:500;font-size:clamp(1.8rem,4vw,3rem);margin:0}
+.card-result-count{color:var(--muted);font-family:system-ui,sans-serif;font-size:.85rem}
+.card-story-list{border-top:1px solid var(--line)}
+.card-story{display:block;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.card-story:hover .card-story-title{color:var(--gold)}
+.card-story .date{display:block;color:var(--muted);font-family:system-ui,sans-serif;font-size:.8rem}
+.card-story-title{display:block;font-size:1.2rem}
+.card-story-title span{color:var(--gold)}
+.card-story-cards{display:flex;flex-wrap:wrap;gap:4px 20px;list-style:none;margin:8px 0 0;padding:0;color:var(--muted);font-family:system-ui,sans-serif;font-size:.78rem}
+.card-story-cards .selected-card{color:var(--gold)}
+.back-to-cards{display:inline-block;margin-top:32px;font-family:system-ui,sans-serif;font-size:.86rem}
+@media(max-width:760px){.card-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 14px}.card-choice span:not(.card-image-placeholder){font-size:.85rem}.card-story-cards{display:block}.card-results{padding-top:48px}.archive-links{flex-direction:column;align-items:flex-start;gap:4px}}
