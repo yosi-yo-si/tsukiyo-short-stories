@@ -2172,5 +2172,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-17",
+    "title": "十円玉",
+    "category": "社会",
+    "path": "stories/2026-11-17/",
+    "notionPageId": "41b12bbb-9587-81ca-b681-d715d0bc0d7d",
+    "notionLastEditedTime": "2026-11-17T06:10:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "10",
+        "name": "運命の輪",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-17",
+    "title": "蓋",
+    "category": "地域",
+    "path": "stories/2026-11-17-2/",
+    "notionPageId": "41a12bbb-9587-8128-bf51-c4574cd8d3ba",
+    "notionLastEditedTime": "2026-11-17T06:10:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "13",
+        "name": "死神",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
