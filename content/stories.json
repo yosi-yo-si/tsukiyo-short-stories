@@ -2230,5 +2230,121 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-19",
+    "title": "あいとる日",
+    "category": "地域",
+    "path": "stories/2026-11-19/",
+    "notionPageId": "41c12bbb-9587-8190-a333-ce694346439a",
+    "notionLastEditedTime": "2026-11-18T18:41:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "13",
+        "name": "死神",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "00",
+        "name": "愚者",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-19",
+    "title": "一番乗り",
+    "category": "文化",
+    "path": "stories/2026-11-19-2/",
+    "notionPageId": "41c12bbb-9587-8151-b4d0-f4225670e8c3",
+    "notionLastEditedTime": "2026-11-18T18:41:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "14",
+        "name": "節制",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "18",
+        "name": "月",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-19",
+    "title": "けのび",
+    "category": "社会",
+    "path": "stories/2026-11-19-3/",
+    "notionPageId": "41b12bbb-9587-8183-b101-d0f84e2ab966",
+    "notionLastEditedTime": "2026-11-18T18:41:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "正位置"
+      },
+      {
+        "position": "現在",
+        "number": "10",
+        "name": "運命の輪",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "11",
+        "name": "正義",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-19",
+    "title": "八十八日",
+    "category": "国際",
+    "path": "stories/2026-11-19-4/",
+    "notionPageId": "41b12bbb-9587-8106-8679-e69c97033952",
+    "notionLastEditedTime": "2026-11-18T18:41:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "08",
+        "name": "力",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "未来",
+        "number": "21",
+        "name": "世界",
+        "orientation": "逆位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
