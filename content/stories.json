@@ -2607,5 +2607,63 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-22",
+    "title": "挙手",
+    "category": "地域",
+    "path": "stories/2026-11-22/",
+    "notionPageId": "42012bbb-9587-818c-9a60-fc706c925f70",
+    "notionLastEditedTime": "2026-11-22T07:55:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "14",
+        "name": "節制",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "05",
+        "name": "教皇",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-22",
+    "title": "石段",
+    "category": "文化",
+    "path": "stories/2026-11-22-2/",
+    "notionPageId": "41f12bbb-9587-81d0-b9c2-f60880d3628e",
+    "notionLastEditedTime": "2026-11-22T07:55:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "03",
+        "name": "女帝",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "16",
+        "name": "塔",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
