@@ -2926,5 +2926,92 @@
       }
     ],
     "hasReading": true
+  },
+  {
+    "date": "2026-11-26",
+    "title": "暖かかったとは言わなかった",
+    "category": "経済",
+    "path": "stories/2026-11-26/",
+    "notionPageId": "42412bbb-9587-8187-9f61-e07fbe559bf8",
+    "notionLastEditedTime": "2026-11-26T09:19:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "02",
+        "name": "女教皇",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "12",
+        "name": "吊るされた男",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "17",
+        "name": "星",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-26",
+    "title": "隙間を教えた",
+    "category": "科学",
+    "path": "stories/2026-11-26-2/",
+    "notionPageId": "42412bbb-9587-8127-9ec9-ddfda2c054c1",
+    "notionLastEditedTime": "2026-11-26T09:19:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "16",
+        "name": "塔",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "06",
+        "name": "恋人",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "10",
+        "name": "運命の輪",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
+  },
+  {
+    "date": "2026-11-26",
+    "title": "先生は交代だ",
+    "category": "社会",
+    "path": "stories/2026-11-26-3/",
+    "notionPageId": "42312bbb-9587-81ac-8acc-d5be0d94ff5a",
+    "notionLastEditedTime": "2026-11-26T09:19:00.000Z",
+    "cards": [
+      {
+        "position": "過去",
+        "number": "08",
+        "name": "力",
+        "orientation": "逆位置"
+      },
+      {
+        "position": "現在",
+        "number": "01",
+        "name": "魔術師",
+        "orientation": "正位置"
+      },
+      {
+        "position": "未来",
+        "number": "11",
+        "name": "正義",
+        "orientation": "正位置"
+      }
+    ],
+    "hasReading": true
   }
 ]
